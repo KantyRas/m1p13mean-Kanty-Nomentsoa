@@ -1,0 +1,80 @@
+/* Reset rapide */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Container global */
+form {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 40px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Titres et labels */
+form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0ea5e9;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #334155;
+  font-weight: bold;
+}
+
+/* Inputs */
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+  border-color: #0ea5e9;
+}
+
+/* Bouton */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #0ea5e9;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #0284c7;
+}
+
+/* Select style */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: white url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 140,0 70,70' fill='%23334'/%3E%3C/svg%3E") no-repeat right 10px center;
+  background-size: 12px;
+}

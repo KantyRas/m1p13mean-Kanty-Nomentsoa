@@ -9,11 +9,27 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 import { Role } from './components/role/role';
+import { Login } from './components/login/login';
+import { AdminLayout } from './components/admin-layout/admin-layout';
+import { Dashboard } from './components/dashboard/dashboard';
+import { Users } from './components/users/users';
+import { Home } from './components/home/home';
+import { GestionBoutique } from './components/gestion-boutique/gestion-boutique';
+import { GestionCompte } from './components/gestion-compte/gestion-compte';
+import { GestionBudget } from './components/gestion-budget/gestion-budget';
 
 @NgModule({
   declarations: [
     App,
     Role,
+    Login,
+    AdminLayout,
+    Dashboard,
+    Users,
+    Home,
+    GestionBoutique,
+    GestionCompte,
+    GestionBudget,
   ],
   imports: [
     BrowserModule,
