@@ -34,10 +34,15 @@ export class Login {
         localStorage.setItem('token', res.token);
 
         const role = this.authService.getRole();
+        localStorage.setItem('role', role);
         console.log('ROLE :', role);
 
-        this.router.navigate([`/dashboard/${role}`]);
-
+        if (role === 'client') {
+          this.router.navigate(['/']);
+        }else {
+          this.router.navigate(['/admin/dashboard']);
+        }
+        //this.router.navigate([`/dashboard/${role}`]);
         // this.router.navigate(['/role']);
       },
       error: (err) => {

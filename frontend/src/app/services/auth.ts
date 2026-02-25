@@ -23,7 +23,7 @@ export class Auth {
     return this.user;
   }
 
-  getRole(): string | null {
+  getRole() {
 
     const token = localStorage.getItem('token');
     if (!token) return null;

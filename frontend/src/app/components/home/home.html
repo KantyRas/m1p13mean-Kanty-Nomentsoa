@@ -4,9 +4,9 @@
     <nav class="nav-bar">
 
       <div class="nav-left">
-        <a>Produits</a>
-        <a>Promotions</a>
-        <a>Contact</a>
+        <a routerLink="produits" routerLinkActive>Produits</a>
+        <a routerLink="#">Promotions</a>
+        <a routerLink="#">Contact</a>
       </div>
 
       <div class="nav-right">
@@ -41,21 +41,9 @@
 
     </nav>
   </header>
-
-  <section class="hero">
-    <h2>Découvrez nos meilleures offres</h2>
-    <p>Livraison rapide et sécurisée partout.</p>
-    <button>Voir les produits</button>
-  </section>
-
-  <section class="products">
-    <h3>Nos produits populaires</h3>
-    <div class="product-cards">
-      <div class="product-card">Produit 1</div>
-      <div class="product-card">Produit 2</div>
-      <div class="product-card">Produit 3</div>
-    </div>
-  </section>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
 
   <footer class="home-footer">
     <p>© Kanty - Nomentsoa</p>

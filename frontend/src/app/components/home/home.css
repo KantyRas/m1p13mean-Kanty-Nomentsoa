@@ -1,4 +1,7 @@
 .home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
 }
 
@@ -7,9 +10,7 @@
 .home-header {
   background: #1e293b;
   color: white;
-  padding: 15px 40px;
-  display: flex;
-  flex-direction: column;
+  padding: 20px 40px;
 }
 
 /* Titre */
@@ -53,6 +54,11 @@
   color: white;
   font-weight: 500;
   transition: 0.2s;
+}
+.content {
+  flex: 1; /* prend tout l’espace restant */
+  padding: 40px 20px;
+  background: #f8fafc;
 }
 
 .login-link:hover {

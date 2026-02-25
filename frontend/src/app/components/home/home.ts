@@ -12,13 +12,17 @@ export class Home implements OnInit {
   constructor(private router: Router) {}
 
   role: string | null = null;
+  token: string | null = null;
 
   ngOnInit() {
     this.role = localStorage.getItem('role');
+    this.token = localStorage.getItem('token');
   }
 
   logout() {
     localStorage.removeItem('role');
+    localStorage.removeItem('token');
+
     this.role = null;
   }
 

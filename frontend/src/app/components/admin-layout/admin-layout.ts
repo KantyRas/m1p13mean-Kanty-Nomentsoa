@@ -25,6 +25,7 @@ export class AdminLayout implements OnInit {
 
   logout() {
     localStorage.removeItem('role');
+    localStorage.removeItem('token');
     this.router.navigate(['/']);
   }
 
