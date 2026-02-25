@@ -1,0 +1,18 @@
+<h2>Dashboard</h2>
+
+<!-- Admin Boutique -->
+<div *ngIf="role === 'admin-boutique'">
+  <h3>Tableau de bord Boutique</h3>
+  <p>Statistiques des produits</p>
+  <p>Ventes du jour</p>
+  <p>Stock disponible</p>
+</div>
+
+<!-- Admin Centre -->
+<div *ngIf="role === 'admin-centre'">
+  <h3>Tableau de bord Centre Commercial</h3>
+  <p>Nombre total de boutiques</p>
+  <p>Revenus globaux</p>
+  <p>Budgets</p>
+
+</div>
