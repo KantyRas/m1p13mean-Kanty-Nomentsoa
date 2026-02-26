@@ -10,6 +10,7 @@ import { Login } from './components/login/login';
 import {Register} from './components/register/register';
 import {Produits} from './components/produits/produits';
 import {RegisterBoutique} from './components/register-boutique/register-boutique';
+import {GestionBoutique} from './components/gestion-boutique/gestion-boutique';
 
 const routes: Routes = [
 
@@ -29,6 +30,7 @@ const routes: Routes = [
     component: AdminLayout,
     children: [
       { path: 'dashboard', component: Dashboard },
+      { path: 'boutiques', component: GestionBoutique },
       { path: 'users', component: Users },
       { path: 'accounts', component: GestionCompte },
       { path: 'budgets', component: GestionBudget },
