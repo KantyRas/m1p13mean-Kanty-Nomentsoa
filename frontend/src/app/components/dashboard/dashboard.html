@@ -44,34 +44,27 @@
       </div>
     </div>
   </div>
-
   <div class="content-area">
     <div class="header">
       <h2>Gestion des Utilisateurs</h2>
-      <button class="btn btn-add" routerLink="/register">+ Ajouter</button>
+      <button class="btn btn-add"  routerLink="/admin/register-boutique">+ Ajouter</button>
     </div>
 
     <div class="table-container">
       <table>
         <thead>
           <tr>
-            <th>Utilisateur</th>
-            <th>Email</th>
-            <th>Statut</th>
+            <th>Nom d'utilisateur</th>
+            <th>User</th>
+            <th>Role</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><strong>Alice Martin</strong></td>
-            <td>alice@shop.com</td>
-            <td><span class="status active">Actif</span></td>
-            <td><button class="btn-view">Détails</button></td>
-          </tr>
-          <tr>
-            <td><strong>Marc Durand</strong></td>
-            <td>marc@web.fr</td>
-            <td><span class="status inactive">Inactif</span></td>
+          <tr *ngFor="let user of users">
+            <td><strong>{{ user.name }}</strong></td>
+            <td>{{ user.username}}</td>
+            <td *ngFor="let role of user.roles"><span class="status active">{{ role.rolename }}</span></td>
             <td><button class="btn-view">Détails</button></td>
           </tr>
         </tbody>

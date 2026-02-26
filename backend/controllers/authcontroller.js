@@ -6,7 +6,13 @@ const jwt = require('jsonwebtoken');
 // register
 const register = async (req, res, next)=>{
 
-    const role = await Role.findOne({rolename: 'admin-boutique'});
+    const roleName = req.body.role;   // 👈 on récupère le rôle envoyé
+
+    const role = await Role.findOne({ rolename: roleName });
+
+    if (!role) {
+        return res.status(400).json({ message: "Role non assigné" });
+    }
 
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
@@ -54,4 +60,4 @@ const login = async (req, res, next)=>{
 };
 
 
-module.exports = { register,login };
+module.exports = {register,login};  
