@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Auth} from '../../services/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +9,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class Dashboard implements OnInit {
 
+  constructor(private authservice: Auth) {
+  }
   role: string | null = null;
-
   ngOnInit() {
-    this.role = localStorage.getItem('role');
+    this.role = this.authservice.getRole();
   }
 
 }

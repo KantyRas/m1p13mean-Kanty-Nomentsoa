@@ -1,2 +1,94 @@
-<h1>Crud Boutique</h1>
-<p>Categorie, Historique</p>
+<div class="gestion-container">
+
+  <!-- FILTRE -->
+  <div class="filter">
+    <button (click)="loadBoutiques()">Toutes</button>
+    <button (click)="filterByStatut(0)">Libres</button>
+    <button (click)="filterByStatut(1)">Occupées</button>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div class="form-section">
+    <h2>{{ selectedBoutique ? 'Modifier Boutique' : 'Créer Boutique' }}</h2>
+
+    <form (ngSubmit)="selectedBoutique ? updateBoutique() : createBoutique()">
+
+      <input type="text" placeholder="Référence"
+             [(ngModel)]="boutiqueForm.reference" name="reference">
+
+      <input type="text" placeholder="Nom boutique"
+             [(ngModel)]="boutiqueForm.nomboutique" name="nomboutique" required>
+
+      <input type="text" placeholder="Description"
+             [(ngModel)]="boutiqueForm.description" name="description">
+
+      <input type="number" placeholder="Surface"
+             [(ngModel)]="boutiqueForm.surface" name="surface" required>
+
+      <input type="number" placeholder="Loyer"
+             [(ngModel)]="boutiqueForm.loyer" name="loyer" required>
+
+      <input type="number" placeholder="Nombre pièces"
+             [(ngModel)]="boutiqueForm.nombrepiece" name="nombrepiece" required>
+
+      <input type="text" placeholder="Localisation"
+             [(ngModel)]="boutiqueForm.localisation" name="localisation">
+
+      <select [(ngModel)]="boutiqueForm.statut" name="statut">
+        <option [value]="0">Libre</option>
+        <option [value]="1">Occupée</option>
+      </select>
+
+      <div class="form-buttons">
+        <button type="submit">
+          {{ selectedBoutique ? 'Mettre à jour' : 'Créer' }}
+        </button>
+
+        <button type="button" *ngIf="selectedBoutique" (click)="resetForm()">
+          Annuler
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- TABLE LISTE -->
+  <div class="table-section">
+    <h2>Liste des boutiques</h2>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Réf</th>
+        <th>Nom</th>
+        <th>Déscription</th>
+        <th>Surface</th>
+        <th>Loyer</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let b of boutiques">
+        <td>{{ b.reference }}</td>
+        <td>{{ b.nomboutique }}</td>
+        <td>{{ b.description }}</td>
+        <td>{{ b.surface }} m²</td>
+        <td>{{ b.loyer }} Ar</td>
+        <td>
+            <span [ngClass]="b.statut === 0 ? 'badge-libre' : 'badge-occupee'">
+              {{ b.statut === 0 ? 'Libre' : 'Occupée' }}
+            </span>
+        </td>
+        <td>
+          <button (click)="editBoutique(b)">Modifier</button>
+          <button (click)="deleteBoutique(b._id)">Supprimer</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

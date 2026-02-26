@@ -49,9 +49,10 @@ export class AdminLayout implements OnInit {
 
     return [
       { label: 'Dashboard', path: 'dashboard' },
+      { label: 'Gestion Boutiques', path: 'boutiques' },
       { label: 'Gestion Utilisateurs', path: 'users' },
       { label: 'Gestion Comptes', path: 'accounts' },
-      { label: 'Gestion Budgets', path: 'budgets' }
+      { label: 'Gestion Budgets', path: 'budgets' },
     ];
   }
 }
