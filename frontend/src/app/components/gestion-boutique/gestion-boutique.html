@@ -34,9 +34,9 @@
       <input type="text" placeholder="Localisation"
              [(ngModel)]="boutiqueForm.localisation" name="localisation">
 
-      <select [(ngModel)]="boutiqueForm.statut" name="statut">
-        <option [value]="0">Libre</option>
-        <option [value]="1">Occupée</option>
+      <select *ngIf="isEditing" [(ngModel)]="boutiqueForm.statut" name="statut">
+        <option [ngValue]="0">Libre</option>
+        <option [ngValue]="1">Occupée</option>
       </select>
 
       <div class="form-buttons">
@@ -82,6 +82,7 @@
             </span>
         </td>
         <td>
+          <button (click)="showDetails(b)">Détails</button>
           <button (click)="editBoutique(b)">Modifier</button>
           <button (click)="deleteBoutique(b._id)">Supprimer</button>
         </td>
@@ -91,4 +92,58 @@
 
   </div>
 
+</div>
+
+<!-- MODAL DETAILS -->
+<div class="modal-backdrop" *ngIf="showDetailsModal">
+
+  <div class="modal">
+
+    <h2>Détails Boutique</h2>
+
+    <label>Propriétaire</label>
+    <select [(ngModel)]="detailsForm.proprietaire" name="proprietaire">
+      <option *ngFor="let user of users" [value]="user._id">
+        {{ user.name }}
+      </option>
+    </select>
+
+    <label>Catégorie</label>
+    <input type="text"
+           [(ngModel)]="detailsForm.categorie"
+           name="categorie">
+
+    <div class="modal-buttons">
+      <button (click)="saveDetails()">Enregistrer</button>
+      <button (click)="showDetailsModal=false">Annuler</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL DÉTAILS -->
+<div class="modal-backdrop" *ngIf="detailsModalVisible">
+  <div class="modal">
+    <h2>Détails de la boutique</h2>
+
+    <p><strong>Propriétaire actuel:</strong>
+      {{ selectedDetails.proprietaire?.name || 'Non défini' }}
+    </p>
+
+    <p><strong>Catégorie :</strong>
+      {{ selectedDetails.categorie || 'Non défini' }}
+    </p>
+
+    <p><strong>Date activation :</strong>
+      {{ selectedDetails.date_activation ? (selectedDetails.date_activation | date:'short') : 'Non définie' }}
+    </p>
+
+    <p><strong>Date activation :</strong>
+      {{ selectedDetails.date_resilliation ? (selectedDetails.date_activation | date:'short') : 'Non définie' }}
+    </p>
+
+    <div class="modal-buttons">
+      <button (click)="closeDetails()">Fermer</button>
+    </div>
+  </div>
 </div>

@@ -15,6 +15,8 @@ import { GestionCompte } from './components/gestion-compte/gestion-compte';
 import { GestionBudget } from './components/gestion-budget/gestion-budget';
 import {Register} from './components/register/register';
 import { Produits } from './components/produits/produits';
+import { RegisterBoutique } from './components/register-boutique/register-boutique';
+import { RegisterClient } from './components/register-client/register-client';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { Produits } from './components/produits/produits';
     GestionBudget,
     Register,
     Produits,
+    RegisterBoutique,
+    RegisterClient,
   ],
   imports: [
     BrowserModule,

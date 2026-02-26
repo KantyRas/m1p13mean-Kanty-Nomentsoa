@@ -47,13 +47,13 @@ export class BoutiqueService {
   }
 
   // PUT update details
-  updateDetails(id: string, details: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${id}/details`, { details });
+  updateDetails(id: string, data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/details/${id}`,  data );
   }
 
   // GET boutiques actives avec propriétaire
   getActiveWithOwner(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/active-with-owner`);
+    return this.http.get<any[]>(`${this.apiUrl}/active-owner`);
   }
 
   // GET statistiques

@@ -209,3 +209,151 @@ tr:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* --- MODAL BACKDROP --- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond noir semi-transparent */
+  backdrop-filter: blur(4px);           /* Effet de flou sur l'arrière-plan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;                        /* Pour passer au-dessus de tout */
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* --- FENÊTRE MODALE --- */
+.modal {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+/* --- ÉLÉMENTS DE FORMULAIRE --- */
+.modal label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: -10px; /* Rapproche le label de son input */
+  color: #7f8c8d;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box; /* Évite que l'input dépasse */
+  transition: border-color 0.2s;
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+.modal p {
+  display: flex;
+  justify-content: space-between; /* Aligne le label à gauche et la valeur à droite */
+  padding: 12px 0;
+  margin: 0;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.modal p:last-of-type {
+  border-bottom: none; /* Enlève la ligne pour le dernier élément */
+}
+
+.modal p strong {
+  color: #7f8c8d; /* Couleur plus douce pour les labels */
+  font-weight: 600;
+  margin-right: 15px;
+}
+
+/* Style pour les valeurs (le texte après le strong) */
+.modal p span,
+.modal p:not(strong) {
+  text-align: right;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* --- BOUTONS MODALE --- */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  transition: all 0.2s;
+}
+
+/* Enregistrer */
+.modal-buttons button:first-child {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #27ae60;
+}
+
+/* Annuler */
+.modal-buttons button:last-child {
+  background-color: #ecf0f1;
+  color: #7f8c8d;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #bdc3c7;
+  color: white;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

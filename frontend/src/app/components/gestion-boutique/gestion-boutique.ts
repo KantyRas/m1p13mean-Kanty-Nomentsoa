@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BoutiqueService } from '../../services/boutique.service';
 import { Auth } from '../../services/auth';
 import { ChangeDetectorRef } from '@angular/core';
+import {Userservice} from '../../services/userservice';
 
 @Component({
   selector: 'app-gestion-boutique',
@@ -13,6 +14,7 @@ export class GestionBoutique implements OnInit {
 
   boutiques: any[] = [];
   selectedBoutique: any = null;
+  isEditing: boolean = false;
   stats: any = null;
 
   role: string | null = null;
@@ -37,17 +39,25 @@ export class GestionBoutique implements OnInit {
   };
 
   users: any[] = [];
+  detailsModalVisible = false;
+  selectedDetails: any = null;
 
   constructor(
     private boutiqueService: BoutiqueService,
     private authService: Auth,
+    private userService: Userservice,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.role = this.authService.getRole();
     this.loadBoutiques();
-    this.loadStats();
+    this.loadUsers();
+  }
+  loadUsers() {
+    this.userService.getUsers().subscribe(data => {
+      this.users = data;
+    });
   }
 
   // Charger toutes les boutiques
@@ -61,6 +71,14 @@ export class GestionBoutique implements OnInit {
         console.error('Erreur chargement boutiques', err);
       }
     });
+  }
+  showDetails(boutique: any) {
+    this.selectedDetails = boutique.details || {}; // au cas où details = null
+    this.detailsModalVisible = true;
+  }
+  closeDetails() {
+    this.detailsModalVisible = false;
+    this.selectedDetails = null;
   }
 
   // Charger statistiques
@@ -95,25 +113,45 @@ export class GestionBoutique implements OnInit {
   editBoutique(boutique: any) {
     this.selectedBoutique = boutique;
     this.boutiqueForm = { ...boutique };
+    this.isEditing = true;
   }
 
   // Mettre à jour boutique
   updateBoutique() {
     if (!this.selectedBoutique) return;
+    if (this.boutiqueForm.statut === 1 &&
+      this.selectedBoutique.statut !== 1) {
 
+      this.showDetailsModal = true;
+      return; // stop update normal
+    }
     this.boutiqueService
       .update(this.selectedBoutique._id, this.boutiqueForm)
       .subscribe({
         next: () => {
           this.resetForm();
           this.loadBoutiques();
-          this.loadStats();
           this.cdr.detectChanges();
         },
         error: (err) => {
           console.error('Erreur update', err);
         }
       });
+  }
+  saveDetails() {
+    this.detailsForm.date_activation = new Date();
+    this.detailsForm.date_resilliation = null;
+
+    this.boutiqueService.updateDetails(
+      this.selectedBoutique._id,
+      { details: this.detailsForm }
+    ).subscribe(() => {
+
+      this.showDetailsModal = false;
+      this.resetForm();
+      this.loadBoutiques();
+      this.cdr.detectChanges();
+    });
   }
 
   // Supprimer boutique
@@ -123,7 +161,7 @@ export class GestionBoutique implements OnInit {
     this.boutiqueService.delete(id).subscribe({
       next: () => {
         this.loadBoutiques();
-        this.loadStats();
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Erreur suppression', err);
@@ -147,6 +185,7 @@ export class GestionBoutique implements OnInit {
   // Reset formulaire
   resetForm() {
     this.selectedBoutique = null;
+    this.isEditing = false;
     this.boutiqueForm = {
       reference: '',
       nomboutique: '',

@@ -3,7 +3,7 @@ const Boutique = require('../models/Boutique');
 //GET liste boutique
 exports.getAllBoutique = async (req,res) => {
   try {
-    const boutiques = await Boutique.find();
+    const boutiques = await Boutique.find().populate('details.proprietaire', 'name username');
     res.status(200).json(boutiques);
   }  catch(error){
     res.status(500).json({error:error});
@@ -55,7 +55,7 @@ exports.deleteBoutique = async (req,res) => {
 exports.getBoutiquesByStatut = async (req, res) => {
     try {
         const { statut } = req.params; // exemple: 0 = libre, 1 = occupée
-        const boutiques = await Boutique.find({ statut: Number(statut) });
+        const boutiques = await Boutique.find({ statut: Number(statut) }).populate('details.proprietaire', 'name username');
         res.status(200).json(boutiques);
     } catch (error) {
         res.status(500).json({ error });
@@ -66,7 +66,7 @@ exports.getBoutiquesByStatut = async (req, res) => {
 exports.getBoutiquesByOwner = async (req, res) => {
     try {
         const { ownerId } = req.params;
-        const boutiques = await Boutique.find({ 'details.proprietaire': ownerId });
+        const boutiques = await Boutique.find({ 'details.proprietaire': ownerId }).populate('details.proprietaire', 'name username');
         res.status(200).json(boutiques);
     } catch (error) {
         res.status(500).json({ error });
@@ -78,7 +78,10 @@ exports.updateDetails = async (req, res) => {
     try {
         const updatedBoutique = await Boutique.findByIdAndUpdate(
             req.params.id,
-            { $set: { details: req.body.details } },
+            { $set: {
+                    details: req.body.details,
+                    statut: 1 }
+                },
             { new: true }
         );
         if (!updatedBoutique) {
@@ -94,7 +97,7 @@ exports.updateDetails = async (req, res) => {
 exports.getActiveBoutiquesWithOwner = async (req, res) => {
     try {
         const boutiques = await Boutique.find({ 'details.proprietaire': { $ne: null } })
-            .populate('details.proprietaire', 'name email');
+            .populate('details.proprietaire', 'name username');
         res.status(200).json(boutiques);
     } catch (error) {
         res.status(500).json({ error });

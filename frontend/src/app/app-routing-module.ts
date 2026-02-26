@@ -9,6 +9,7 @@ import {GestionBudget} from './components/gestion-budget/gestion-budget';
 import { Login } from './components/login/login';
 import {Register} from './components/register/register';
 import {Produits} from './components/produits/produits';
+import {RegisterBoutique} from './components/register-boutique/register-boutique';
 import {GestionBoutique} from './components/gestion-boutique/gestion-boutique';
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
       { path: 'users', component: Users },
       { path: 'accounts', component: GestionCompte },
       { path: 'budgets', component: GestionBudget },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'register-boutique', component: RegisterBoutique },
     ]
   },
 
