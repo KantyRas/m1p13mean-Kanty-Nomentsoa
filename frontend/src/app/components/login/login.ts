@@ -9,49 +9,49 @@ import { Router } from '@angular/router';
   styleUrl: './login.css',
 })
 export class Login {
+
   username = '';
   password = '';
   errorMessage = '';
 
-  constructor(private authService: Auth, private router: Router, private cdr: ChangeDetectorRef) {}
-
+  constructor(
+    private authService: Auth,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   onLogin() {
 
-    this.errorMessage = ''; // réinitialiser le message avant chaque login
+    this.errorMessage = '';
 
     const data = {
       username: this.username,
       password: this.password
     };
 
-
     this.authService.login(data).subscribe({
-      next: (res: any) => {
-        console.log('Login success', res);
 
-        // Sauvegarde du token dans le localStorage
+      next: (res: any) => {
+
+        // On stocke seulement le token
         localStorage.setItem('token', res.token);
 
         const role = this.authService.getRole();
-        localStorage.setItem('role', role);
-        console.log('ROLE :', role);
 
         if (role === 'client') {
           this.router.navigate(['/']);
-        }else {
+        } else if (role === 'admin-boutique' || role === 'admin-centre') {
           this.router.navigate(['/admin/dashboard']);
+        } else {
+          this.router.navigate(['/']);
         }
-        //this.router.navigate([`/dashboard/${role}`]);
-        // this.router.navigate(['/role']);
       },
+
       error: (err) => {
-        console.log('Erreur login', err.status);
-        console.log('Message backend :', err.error);
-        this.errorMessage = err.error?.error || 'Erreur inconnue';
+        this.errorMessage = err.error?.error || 'Identifiants invalides';
         this.cdr.detectChanges();
       }
-    });
 
+    });
   }
 }

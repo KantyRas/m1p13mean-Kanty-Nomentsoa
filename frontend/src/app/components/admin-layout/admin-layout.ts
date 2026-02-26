@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-admin-layout',
@@ -9,39 +10,48 @@ import { Router } from '@angular/router';
 })
 export class AdminLayout implements OnInit {
 
-  constructor(private router: Router) {}
-  role: 'admin-boutique' | 'admin-centre' = 'admin-boutique';
+  role!: 'admin-boutique' | 'admin-centre';
+
+  constructor(
+    private router: Router,
+    private authService: Auth
+  ) {}
 
   ngOnInit() {
-    const savedRole = localStorage.getItem('role');
 
-    if (savedRole === 'admin-boutique' || savedRole === 'admin-centre') {
-      this.role = savedRole;
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const role = this.authService.getRole();
+
+    if (role === 'admin-boutique' || role === 'admin-centre') {
+      this.role = role;
     } else {
-      // Client ou non connecté → interdit
       this.router.navigate(['/']);
     }
   }
 
   logout() {
-    localStorage.removeItem('role');
-    localStorage.removeItem('token');
+    this.authService.logout();
     this.router.navigate(['/']);
   }
 
   get menuLinks() {
+
     if (this.role === 'admin-boutique') {
       return [
         { label: 'Dashboard', path: 'dashboard' },
         { label: 'Produits', path: 'users' }
       ];
-    } else {
-      return [
-        { label: 'Dashboard', path: 'dashboard' },
-        { label: 'Gestion Utilisateurs', path: 'users' },
-        { label: 'Gestion Comptes', path: 'accounts' },
-        { label: 'Gestion Budgets', path: 'budgets' },
-      ];
     }
+
+    return [
+      { label: 'Dashboard', path: 'dashboard' },
+      { label: 'Gestion Utilisateurs', path: 'users' },
+      { label: 'Gestion Comptes', path: 'accounts' },
+      { label: 'Gestion Budgets', path: 'budgets' }
+    ];
   }
 }

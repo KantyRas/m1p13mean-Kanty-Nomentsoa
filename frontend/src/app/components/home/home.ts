@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {Auth} from '../../services/auth';
 
 @Component({
   selector: 'app-home',
@@ -7,23 +8,23 @@ import {Router} from '@angular/router';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements OnInit {
+export class Home {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: Auth
+  ) {}
 
-  role: string | null = null;
-  token: string | null = null;
+  get role(): string | null {
+    return this.authService.getRole();
+  }
 
-  ngOnInit() {
-    this.role = localStorage.getItem('role');
-    this.token = localStorage.getItem('token');
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
   logout() {
-    localStorage.removeItem('role');
-    localStorage.removeItem('token');
-
-    this.role = null;
+    this.authService.logout();
   }
 
   goToDashboard() {
