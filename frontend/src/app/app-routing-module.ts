@@ -17,7 +17,7 @@ const routes: Routes = [
     path: '',
     component: Home,
     children: [
-      {path: 'produits', component: Produits},
+      {path: '', component: Produits},
     ]
   },
   { path: 'login', component: Login }, // page login accessible via /login
