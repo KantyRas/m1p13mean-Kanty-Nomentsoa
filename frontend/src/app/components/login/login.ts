@@ -45,6 +45,8 @@ export class Login {
         } else {
           this.router.navigate(['/']);
         }
+        //this.router.navigate([`/dashboard/${role}`]);
+        // this.router.navigate(['/role']);
       },
 
       error: (err) => {

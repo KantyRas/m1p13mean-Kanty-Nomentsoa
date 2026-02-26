@@ -1,2 +1,33 @@
-<h1>Gestion des utilisateurs</h1>
-<p>Validation, activation compte</p>
+<div class="content-area">
+    <div class="header">
+      <h2>Gestion des Utilisateurs</h2>
+      <button class="btn btn-add" routerLink="/login">+ Ajouter</button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Utilisateur</th>
+            <th>Email</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Alice Martin</strong></td>
+            <td>alice@shop.com</td>
+            <td><span class="status active">Actif</span></td>
+            <td><button class="btn-view">Détails</button></td>
+          </tr>
+          <tr>
+            <td><strong>Marc Durand</strong></td>
+            <td>marc@web.fr</td>
+            <td><span class="status inactive">Inactif</span></td>
+            <td><button class="btn-view">Détails</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

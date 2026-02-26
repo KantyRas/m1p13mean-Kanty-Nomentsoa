@@ -10,9 +10,74 @@
 
 <!-- Admin Centre -->
 <div *ngIf="role === 'admin-centre'">
-  <h3>Tableau de bord Centre Commercial</h3>
-  <p>Nombre total de boutiques</p>
-  <p>Revenus globaux</p>
-  <p>Budgets</p>
+  <div class="dashboard-wrapper">
+  <div class="stats-grid">
+    <div class="card">
+      <div class="card-icon blue">🏪</div>
+      <div class="card-info">
+        <span class="label">Total Boutiques</span>
+        <span class="value">24</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon green">💰</div>
+      <div class="card-info">
+        <span class="label">Revenu Global</span>
+        <span class="value">12 450 €</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon purple">👥</div>
+      <div class="card-info">
+        <span class="label">Utilisateurs</span>
+        <span class="value">1 205</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon orange">📈</div>
+      <div class="card-info">
+        <span class="label">Visiteurs</span>
+        <span class="value">45.2k</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-area">
+    <div class="header">
+      <h2>Gestion des Utilisateurs</h2>
+      <button class="btn btn-add" routerLink="/register">+ Ajouter</button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Utilisateur</th>
+            <th>Email</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Alice Martin</strong></td>
+            <td>alice@shop.com</td>
+            <td><span class="status active">Actif</span></td>
+            <td><button class="btn-view">Détails</button></td>
+          </tr>
+          <tr>
+            <td><strong>Marc Durand</strong></td>
+            <td>marc@web.fr</td>
+            <td><span class="status inactive">Inactif</span></td>
+            <td><button class="btn-view">Détails</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 </div>

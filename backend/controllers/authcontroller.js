@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 // register
 const register = async (req, res, next)=>{
 
-    const role = await Role.findOne({rolename: 'client'});
+    const role = await Role.findOne({rolename: 'admin-boutique'});
 
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
