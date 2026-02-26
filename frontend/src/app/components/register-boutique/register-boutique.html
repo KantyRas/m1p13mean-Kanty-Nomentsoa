@@ -1,0 +1,22 @@
+<div class="page-wrapper">
+  <div class="register-container">
+    <h2>Nouveau compte boutique</h2>
+    
+    <form (ngSubmit)="OnRegisterBoutique()">
+      <div class="input-group">
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Nom de la boutique" required>
+        <input type="text" [(ngModel)]="username" name="username" placeholder="Nom d'utilisateur" required>
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Mot de passe" required>
+      </div>
+
+      <button type="submit" class="submit-btn">S'enregistrer</button>
+      
+      <div *ngIf="errorMessage" class="error-container shake">
+        <span class="error-icon">⚠️</span>
+        <div class="error-text">
+          <strong>Erreur :</strong> {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

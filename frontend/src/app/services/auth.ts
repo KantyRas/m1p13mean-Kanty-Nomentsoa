@@ -65,4 +65,6 @@ export class Auth {
     const role = this.getRole();
     return role === 'admin-boutique' || role === 'admin-centre';
   }
+
+  
 }

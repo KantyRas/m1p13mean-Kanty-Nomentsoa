@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center;   /* centre horizontalement */
   align-items: center;       /* centre verticalement */
-  background: linear-gradient(135deg, #4e73df, #1cc88a);
 }
 
 form {

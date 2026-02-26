@@ -1,5 +1,5 @@
+<div class="login-container">
 <form (ngSubmit)="onLogin()">
-
   <div class="form-group">
     <label>Username</label>
     <input type="text" [(ngModel)]="username" name="username">
@@ -17,6 +17,29 @@
     </div>
   </div>
 
-  <button type="submit">Se connecter</button>
+  <button type="submit" class="btn-login">Se connecter</button>
+
+  <div class="social-auth-container">
+    <div class="divider">
+      <span>ou continuer avec</span>
+    </div>
+
+    <div class="social-buttons">
+      <button type="button" class="social-btn google" >
+        <img src="https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg" alt="Google">
+        Google
+      </button>
+      
+      <button type="button" class="social-btn facebook" >
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/04/Facebook_f_logo_%282021%29.svg" alt="Facebook">
+        Facebook
+      </button>
+    </div>
+  </div>
+
+  <div class="signup-link">
+    Pas encore de compte ? <a routerLink="/signup">Inscrivez-vous ici</a>
+  </div>
 
 </form>
+</div>

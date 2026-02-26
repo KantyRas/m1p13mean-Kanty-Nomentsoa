@@ -19,6 +19,7 @@ mongoose.connect(process.env.MONGO_URI)
 // routes
 app.use('/roles', require('./routes/roles'));
 app.use('/auth', require('./routes/auth'));
+app.use('/user', require('./routes/user'));
 
 /* 2️⃣ Dossier Angular build */
 app.use(express.static(path.join(__dirname, "public")));

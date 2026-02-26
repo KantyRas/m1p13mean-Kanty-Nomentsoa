@@ -1,4 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { Auth } from '../../services/auth';
+import { Userservice } from '../../services/userservice';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,11 +10,26 @@ import {Component, OnInit} from '@angular/core';
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit {
+users: any[] = [];
+
+  constructor(private authservice: Auth, private Userservice: Userservice, private cdr: ChangeDetectorRef){
+  }
 
   role: string | null = null;
 
   ngOnInit() {
-    this.role = localStorage.getItem('role');
+    this.role = this.authservice.getRole();
+
+    this.Userservice.getUsers().subscribe({
+      next: (data) => {
+        console.log(data);
+        this.users = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 
 }
