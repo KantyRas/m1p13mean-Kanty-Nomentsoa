@@ -1,2 +1,87 @@
-<h1>Budget centre comm</h1>
-<p>Loyer, Entretien general</p>
+<div class="dashboard-container">
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Période :</label>
+      <input type="date" class="input-field" value="2024-01-01">
+      <span>au</span>
+      <input type="date" class="input-field" value="2024-01-31">
+      <button class="btn btn-filter">Filtrer</button>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="table-section">
+      <div class="section-header">
+        <h3>Historique des dépenses</h3>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Budget</th>
+              <th>Catégorie</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Abonnement AWS</strong></td>
+              <td>15/01/2024</td>
+              <td class="amount">240,00 €</td>
+              <td><span class="badge tech">Technologie</span></td>
+            </tr>
+            <tr>
+              <td><strong>Fournitures Bureau</strong></td>
+              <td>12/01/2024</td>
+              <td class="amount">45,50 €</td>
+              <td><span class="badge office">Fournitures</span></td>
+            </tr>
+            <tr>
+              <td><strong>Campagne Ads</strong></td>
+              <td>10/01/2024</td>
+              <td class="amount">1 200,00 €</td>
+              <td><span class="badge marketing">Marketing</span></td>
+            </tr>
+            <tr>
+              <td><strong>Déjeuner Client</strong></td>
+              <td>08/01/2024</td>
+              <td class="amount">89,00 €</td>
+              <td><span class="badge travel">Déplacement</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="section-header">
+        <h3>Nouvelle dépense</h3>
+      </div>
+      <form class="expense-form">
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" placeholder="Désignation de la dépense...">
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Budget (€)</label>
+          <input type="number" placeholder="0.00">
+        </div>
+        <div class="form-group">
+          <label>Catégorie</label>
+          <select>
+            <option value="">Sélectionner...</option>
+            <option>Technologie</option>
+            <option>Marketing</option>
+            <option>Fournitures</option>
+          </select>
+        </div>
+        <button type="button" class="btn btn-submit">Enregistrer la dépense</button>
+      </form>
+    </div>
+  </div>
+</div>
