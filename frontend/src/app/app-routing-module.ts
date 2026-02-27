@@ -10,6 +10,8 @@ import { Login } from './components/login/login';
 import {Register} from './components/register/register';
 import {Produits} from './components/produits/produits';
 import {RegisterBoutique} from './components/register-boutique/register-boutique';
+import { RegisterClient } from './components/register-client/register-client';
+import { HomeClient } from './components/home-client/home-client';
 
 const routes: Routes = [
 
@@ -18,11 +20,12 @@ const routes: Routes = [
     path: '',
     component: Home,
     children: [
-      {path: '', component: Produits},
+      {path: '', component: HomeClient},
     ]
   },
   { path: 'login', component: Login }, // page login accessible via /login
   { path: 'register', component: Register },
+  { path: 'register-client', component: RegisterClient },
 
   {
     path: 'admin',
