@@ -147,3 +147,63 @@ input:focus {
 .btn-submit:hover {
   background: #2563eb;
 }
+
+/* Style pour le bouton de suppression */
+.btn-supprimer {
+  background-color: #e74c3c; 
+  color: white;              
+  border: none;              
+  padding: 6px 12px;         
+  border-radius: 4px;        
+  cursor: pointer;          
+  font-size: 0.85rem;        
+  font-weight: 600;          
+  transition: background-color 0.2s ease; 
+}
+
+/* Style au survol (hover) pour l'interactivité */
+.btn-supprimer:hover {
+  background-color: #c0392b;
+}
+
+/* Style au clic (active) */
+.btn-supprimer:active {
+  background-color: #a93226; 
+  transform: translateY(1px); 
+}
+
+.total-container {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa; 
+  border-top: 2px solid #eee;
+  margin-top: 10px;
+}
+
+.total-label {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+  margin-right: 15px;
+}
+
+.total-amount {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+ /* Style du bouton supprimer  */
+.btn-supprimer {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #e74c3c;
+  transition: transform 0.1s;
+}
+
+.btn-supprimer:hover {
+  transform: scale(1.2);
+}
