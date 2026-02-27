@@ -23,13 +23,13 @@
              [(ngModel)]="boutiqueForm.description" name="description">
 
       <input type="number" placeholder="Surface"
-             [(ngModel)]="boutiqueForm.surface" name="surface" required>
+             [(ngModel)]="boutiqueForm.surface" name="surface" min="0" required>
 
       <input type="number" placeholder="Loyer"
-             [(ngModel)]="boutiqueForm.loyer" name="loyer" required>
+             [(ngModel)]="boutiqueForm.loyer" name="loyer" min="0" required>
 
       <input type="number" placeholder="Nombre pièces"
-             [(ngModel)]="boutiqueForm.nombrepiece" name="nombrepiece" required>
+             [(ngModel)]="boutiqueForm.nombrepiece" name="nombrepiece" min="0" required>
 
       <input type="text" placeholder="Localisation"
              [(ngModel)]="boutiqueForm.localisation" name="localisation">
@@ -62,6 +62,7 @@
         <th>Réf</th>
         <th>Nom</th>
         <th>Déscription</th>
+        <th>Nb.pièces</th>
         <th>Surface</th>
         <th>Loyer</th>
         <th>Statut</th>
@@ -74,6 +75,7 @@
         <td>{{ b.reference }}</td>
         <td>{{ b.nomboutique }}</td>
         <td>{{ b.description }}</td>
+        <td>{{ b.nombrepiece }}</td>
         <td>{{ b.surface }} m²</td>
         <td>{{ b.loyer }} Ar</td>
         <td>
@@ -138,7 +140,7 @@
       {{ selectedDetails.date_activation ? (selectedDetails.date_activation | date:'short') : 'Non définie' }}
     </p>
 
-    <p><strong>Date activation :</strong>
+    <p><strong>Date resilliation :</strong>
       {{ selectedDetails.date_resilliation ? (selectedDetails.date_activation | date:'short') : 'Non définie' }}
     </p>
 

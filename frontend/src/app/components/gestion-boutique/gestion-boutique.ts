@@ -24,9 +24,9 @@ export class GestionBoutique implements OnInit {
     reference: '',
     nomboutique: '',
     description: '',
-    surface: 0,
-    loyer: 0,
-    nombrepiece: 0,
+    surface: '',
+    loyer: '',
+    nombrepiece: '',
     localisation: '',
     statut: 0
   };
@@ -190,9 +190,9 @@ export class GestionBoutique implements OnInit {
       reference: '',
       nomboutique: '',
       description: '',
-      surface: 0,
-      loyer: 0,
-      nombrepiece: 0,
+      surface: '',
+      loyer: '',
+      nombrepiece: '',
       localisation: '',
       statut: 0
     };
