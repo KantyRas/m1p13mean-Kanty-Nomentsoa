@@ -19,7 +19,22 @@ const user = new mongoose.Schema(
             type: [Schema.Types.ObjectId],
             requires: true,
             ref: "Role"
-        }
+        },
+        adresse: {
+            type: String
+        },
+        dateNaissance: {
+            type: Date
+        },
+        genre: {
+            type: String
+        },
+        phone: {
+            type: String
+        },
+        email: {
+            type: String
+        },
     }
 );
 

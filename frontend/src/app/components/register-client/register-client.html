@@ -1,52 +1,36 @@
-<div class="registration-container">
-  <form class="registration-form">
-    <h2>Créer un compte</h2>
-
-    <div class="form-grid">
-      <div class="form-group">
-        <label for="nom">Nom Complet</label>
-        <input id="nom" type="text" formControlName="nom" placeholder="Jean Dupont">
-        <!-- <small class="error" *ngIf="registrationForm.get('nom')?.touched && registrationForm.get('nom')?.invalid">
-          Le nom est requis.
-        </small> -->
+<div class="page-wrapper">
+  <div class="register-container">
+    <h2>Inscription</h2>
+    
+    <form (ngSubmit)="OnRegisterClient()">
+      <div class="input-group">
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Nom" required>
+        <input type="text" [(ngModel)]="phone" name="phone" placeholder="Numero de telephone" required>
+        <input type="text" [(ngModel)]="email" name="mail" placeholder="Adresse Mail" required>
+        <input type="text" [(ngModel)]="adresse" name="adresse" placeholder="Adresse complète" required>
+        <div class="row">
+          <label for="dateNaissance">Date de naissance</label>
+          <input type="date" [(ngModel)]="dateNaissance" name="dateNaissance" title="Date de naissance" required>
+          <select [(ngModel)]="genre" name="genre" required>
+            <option value="" disabled selected>Choisir un genre</option>
+            <option value="Masculin">Masculin</option>
+            <option value="Feminin">Féminin</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <input type="text" [(ngModel)]="username" name="username" placeholder="Nom d'utilisateur" required>
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Mot de passe" required>
+        <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirmer mot de passe" required>
       </div>
 
-      <div class="form-group">
-        <label for="telephone">Numéro de téléphone</label>
-        <input id="telephone" type="tel" formControlName="telephone" placeholder="+33 6 ...">
-      </div>
+      <button type="submit" class="submit-btn">S'enregistrer</button>
 
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input id="email" type="email" formControlName="email" placeholder="exemple@mail.com">
+      <div *ngIf="errorMessage" class="error-container shake">
+        <span class="error-icon">⚠️</span>
+        <div class="error-text">
+          <strong>Erreur :</strong> {{ errorMessage }}
+        </div>
       </div>
-
-      <div class="form-group">
-        <label for="adresse">Adresse</label>
-        <input id="adresse" type="text" formControlName="adresse" placeholder="123 Rue de Paris">
-      </div>
-
-      <div class="form-group">
-        <label for="dateNaissance">Date de Naissance</label>
-        <input id="dateNaissance" type="date" formControlName="dateNaissance">
-      </div>
-
-      <div class="form-group">
-        <label>Genre</label>
-        <select formControlName="genre">
-          <option value="">Sélectionnez</option>
-          <option value="M">Masculin</option>
-          <option value="F">Féminin</option>
-          <option value="A">Autre</option>
-        </select>
-      </div>
-
-      <div class="form-group full-width">
-        <label for="password">Mot de passe</label>
-        <input id="password" type="password" formControlName="password" placeholder="********">
-      </div>
-    </div>
-
-    <button type="submit" [disabled]="">S'inscrire</button>
-  </form>
+    </form>
+  </div>
 </div>
