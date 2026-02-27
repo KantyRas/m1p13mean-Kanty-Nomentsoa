@@ -1,7 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import { Auth } from '../../services/auth';
 import { Userservice } from '../../services/userservice';
-
+import {Auth} from '../../services/auth';
 
 @Component({
   selector: 'app-dashboard',
