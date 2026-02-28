@@ -115,3 +115,17 @@ exports.getBoutiquesStats = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+exports.getBoutiqueById = async (req, res) => {
+    try {
+        const boutique = await Boutique.findById(req.params.id)
+            .populate('details.proprietaire', 'name username');
+
+        if (!boutique) {
+            return res.status(404).json({ message: "Boutique introuvable" });
+        }
+
+        res.status(200).json(boutique);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};

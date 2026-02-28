@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { BoutiqueService } from '../../services/boutique.service';
+import {ProduitService} from '../../services/produit.service';
 
 @Component({
   selector: 'app-home-client',
@@ -9,21 +10,36 @@ import { BoutiqueService } from '../../services/boutique.service';
 })
 export class HomeClient {
    boutiques: any[] = [];
-constructor(private BoutiqueService: BoutiqueService, private cdr: ChangeDetectorRef) {}
+  produitsALaUne: any[] = [];
+constructor(private BoutiqueService: BoutiqueService,
+            private produitService: ProduitService,private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getBoutiques();
+    this.getProduitsALaUne();
   }
 
    getBoutiques(){
     this.BoutiqueService.getByStatut(1).subscribe({
       next: (data) => {
-        console.log(data);
         this.boutiques = data;
         this.cdr.detectChanges();
       },
       error: (err) => {
         console.error(err);
+      }
+    });
+  }
+
+  getProduitsALaUne() {
+    this.produitService.getProduitsALaUne().subscribe({
+      next: (data) => {
+        this.produitsALaUne = data;
+        console.log(data);
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Erreur produits à la une:', err);
       }
     });
   }

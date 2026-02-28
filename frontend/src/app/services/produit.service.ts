@@ -31,8 +31,8 @@ export class ProduitService {
   getByCategorie(categorieId: string) {
     return this.http.get<any[]>(`${this.apiUrl}/categorie/${categorieId}`);
   }
-  getDisponibles(statutId: string) {
-    return this.http.get<any[]>(`${this.apiUrl}/statut/${statutId}`);
+  getDisponibles(boutiqueId: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/statut/${boutiqueId}`);
   }
 
   getPromotion() {
@@ -47,5 +47,12 @@ export class ProduitService {
   }
   createCategorie(data: any) {
     return this.http.post<any>(`${this.apiUrl}/categories`, data);
+  }
+  getProduitsALaUne() {
+    return this.http.get<any[]>(`${this.apiUrl}/alaune`);
+  }
+
+  filterProduits(params: any) {
+    return this.http.get<any[]>(`${this.apiUrl}/filter`, { params });
   }
 }
