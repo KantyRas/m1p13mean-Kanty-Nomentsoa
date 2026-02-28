@@ -10,7 +10,7 @@ const ProduitSchema = mongoose.Schema({
     seuilquantite: { type:Number },
     statut: { type:Number, default: 0 },
     promotion: { type:Number, default: 0 },
-});
+}, { timestamps: true });
 
 const Produit = mongoose.model('produit', ProduitSchema);
 module.exports = Produit;

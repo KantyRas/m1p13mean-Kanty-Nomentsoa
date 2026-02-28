@@ -3,6 +3,7 @@ const router = express.Router();
 const boutiquecontroller = require('../controllers/BoutiqueController');
 
 router.get('/',boutiquecontroller.getAllBoutique);
+router.get('/:id', boutiquecontroller.getBoutiqueById);
 router.post('/', boutiquecontroller.createBoutique);
 router.put('/:id',boutiquecontroller.updateBoutique);
 router.delete('/:id',boutiquecontroller.deleteBoutique);

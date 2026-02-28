@@ -1,22 +1,28 @@
 <div class="shop-container">
-  
+
   <section class="shop-info-banner">
     <div class="shop-info-content">
       <div class="shop-brand-wrapper">
         <img src="https://picsum.photos/id/175/100/100" alt="Logo" class="shop-logo">
         <div class="shop-text-details">
           <div class="shop-header-row">
-            <h1>Ma Boutique Vintage</h1>
-            <span class="shop-category-tag">Maison & Déco</span>
+            <h1>{{ boutique?.nomboutique }}</h1>
+            <span class="shop-category-tag">
+              {{ boutique?.details?.categorie || 'Non définie' }}
+            </span>
           </div>
-          <p class="shop-description">Une sélection unique d'objets rétro et de gadgets modernes pour votre intérieur.</p>
+          <p class="shop-description">
+            {{ boutique?.description }}
+          </p>
         </div>
       </div>
 
       <div class="shop-meta-grid">
         <div class="meta-card">
           <span class="meta-label">📍 Localisation</span>
-          <span class="meta-value">123 Rue de la Tech, Paris</span>
+          <span class="meta-value">
+            {{ boutique?.localisation }}
+          </span>
         </div>
         <div class="meta-card">
           <span class="meta-label">📞 Contact</span>
@@ -34,49 +40,62 @@
     <div class="filter-controls">
       <div class="filter-item">
         <label>Catégorie</label>
-        <select>
-          <option>Toutes les catégories</option>
-          <option>High-Tech</option>
-          <option>Mode</option>
-          <option>Maison</option>
+        <select [(ngModel)]="selectedCategorie">
+          <option value="all">Toutes les catégories</option>
+          <option *ngFor="let c of categories" [value]="c._id">
+            {{ c.nom }}
+          </option>
         </select>
       </div>
 
       <div class="filter-item">
         <label>Prix Max</label>
-        <select>
-          <option>Tous les prix</option>
-          <option>Moins de 50€</option>
-          <option>50€ - 200€</option>
-          <option>Plus de 200€</option>
+        <select [(ngModel)]="selectedPrixMax">
+          <option value="">Tous les prix</option>
+          <option value="50000">Moins de 50 000 Ar</option>
+          <option value="200000">Moins de 200 000 Ar</option>
         </select>
       </div>
 
       <div class="filter-item">
         <label>Trier par</label>
-        <select>
-          <option>Nouveautés</option>
-          <option>Prix croissant</option>
-          <option>Prix décroissant</option>
+        <select [(ngModel)]="selectedSort">
+          <option value="">Par défaut</option>
+          <option value="new">Nouveautés</option>
+          <option value="prix_asc">Prix croissant</option>
+          <option value="prix_desc">Prix décroissant</option>
         </select>
       </div>
 
-      <button class="btn-filter-action">
-        <span>🔍</span> Appliquer les filtres
+      <button (click)="applyFilters()" class="btn-filter-action">
+        🔍 Appliquer les filtres
       </button>
     </div>
   </header>
 
   <main class="products-grid">
-    <div class="product-card" *ngFor="let item of [1,2,3,4,5,6,7,8]">
-      <div class="discount-badge">-10%</div>
+    <div class="product-card" *ngFor="let item of produits">
+      <div class="discount-badge" *ngIf="item?.promotion && item.promotion > 0">
+        -{{ item.promotion }}%
+      </div>
       <img src="https://picsum.photos/id/26/300/200" alt="Produit" class="product-img">
       <div class="product-details">
-        <span class="category-tag">Maison</span>
-        <h3>Réveil Vintage</h3>
+        <span class="category-tag">
+          {{ item.categorieproduit?.nom }}
+        </span>
+        <h3>{{ item.nomproduit }}</h3>
         <div class="price-container">
-          <span class="old-price">40€</span>
-          <span class="current-price">36€</span>
+          <span *ngIf="item.promotion > 0" class="old-price">
+            {{ item.prix }} Ar
+          </span>
+
+          <span class="current-price">
+                    {{
+                      item.promotion > 0
+                        ? (item.prix - (item.prix * item.promotion / 100))
+                        : item.prix
+                    }} Ar
+          </span>
         </div>
         <button class="btn-add" routerLink="/produit-detail">Ajouter au panier</button>
       </div>

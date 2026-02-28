@@ -25,7 +25,7 @@ const routes: Routes = [
     component: Home,
     children: [
       {path: '', component: HomeClient},
-      {path: 'visiter-boutique', component: VisiterBoutique},
+      {path: 'visiter-boutique/:id', component: VisiterBoutique},
       {path: 'panier-liste', component: PanierListe},
       {path: 'produit-detail', component: ProduitDetail},
     ]

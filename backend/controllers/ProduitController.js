@@ -102,6 +102,22 @@ exports.getProduitsByBoutique = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+exports.getProduitsDisponibles = async (req, res) => {
+    try {
+        const { boutiqueId } = req.params;
+
+        const produits = await Produit.find({
+            boutiqueOwner: boutiqueId,
+            statut: 0
+        })
+            .populate('categorieproduit', 'nom');
+
+        res.status(200).json(produits);
+
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
 
 exports.getProduitsByCategorie = async (req, res) => {
     try {
@@ -110,16 +126,6 @@ exports.getProduitsByCategorie = async (req, res) => {
         const produits = await Produit.find({ categorieproduit: categorieId })
             .populate('boutiqueOwner', 'nomboutique');
 
-        res.status(200).json(produits);
-    } catch (error) {
-        res.status(500).json({ error });
-    }
-};
-
-//Statut : Publié sa cachena
-exports.getProduitsDisponibles = async (req, res) => {
-    try {
-        const produits = await Produit.find({ statut: 0 });
         res.status(200).json(produits);
     } catch (error) {
         res.status(500).json({ error });
@@ -142,6 +148,63 @@ exports.getProduitsStockFaible = async (req, res) => {
         });
 
         res.status(200).json(produits);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+exports.getProduitsAlaUne = async (req, res) => {
+    try {
+        const produits = await Produit.find({
+            promotion: { $gt: 0 },
+            statut: 0
+        })
+            .populate('categorieproduit', 'nom')
+            .populate('boutiqueOwner', 'nomboutique')
+            .limit(10)
+            .sort({ promotion: -1 });
+        res.status(200).json(produits);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+}
+
+exports.filterProduits = async (req, res) => {
+    try {
+        const { categorie, prixMax, sort } = req.query;
+
+        let filter = { statut: 0 }; // Toujours produits publiés
+
+        if (categorie && categorie !== 'all') {
+            filter.categorieproduit = categorie;
+        }
+
+        if (prixMax) {
+            filter.prix = { $lte: Number(prixMax) };
+        }
+
+        let sortOption = {};
+
+        switch (sort) {
+            case 'prix_asc':
+                sortOption = { prix: 1 };
+                break;
+            case 'prix_desc':
+                sortOption = { prix: -1 };
+                break;
+            case 'new':
+                sortOption = { createdAt: -1 };
+                break;
+            default:
+                sortOption = {};
+        }
+
+        const produits = await Produit.find(filter)
+            .populate('categorieproduit', 'nom')
+            .sort(sortOption);
+
+        res.status(200).json(produits);
+
     } catch (error) {
         res.status(500).json({ error });
     }
