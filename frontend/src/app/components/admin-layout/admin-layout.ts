@@ -43,7 +43,7 @@ export class AdminLayout implements OnInit {
     if (this.role === 'admin-boutique') {
       return [
         { label: 'Dashboard', path: 'dashboard' },
-        { label: 'Produits', path: 'users' }
+        { label: 'Produits', path: 'produits' }
       ];
     }
 
