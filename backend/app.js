@@ -22,6 +22,7 @@ app.use('/auth', require('./routes/auth'));
 app.use('/user', require('./routes/user'));
 
 app.use('/admin/gestboutiques', require('./routes/boutiques'));
+app.use('/depense', require('./routes/depense'));
 /* 2️⃣ Dossier Angular build */
 app.use(express.static(path.join(__dirname, "public")));
 

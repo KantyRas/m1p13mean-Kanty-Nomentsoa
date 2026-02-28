@@ -1,0 +1,85 @@
+<div class="shop-container">
+  
+  <section class="shop-info-banner">
+    <div class="shop-info-content">
+      <div class="shop-brand-wrapper">
+        <img src="https://picsum.photos/id/175/100/100" alt="Logo" class="shop-logo">
+        <div class="shop-text-details">
+          <div class="shop-header-row">
+            <h1>Ma Boutique Vintage</h1>
+            <span class="shop-category-tag">Maison & Déco</span>
+          </div>
+          <p class="shop-description">Une sélection unique d'objets rétro et de gadgets modernes pour votre intérieur.</p>
+        </div>
+      </div>
+
+      <div class="shop-meta-grid">
+        <div class="meta-card">
+          <span class="meta-label">📍 Localisation</span>
+          <span class="meta-value">123 Rue de la Tech, Paris</span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">📞 Contact</span>
+          <span class="meta-value">+33 1 23 45 67 89</span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">🕒 Horaires</span>
+          <span class="meta-value">Lun-Sam: 09:00 - 19:00</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <header class="filter-bar-modern">
+    <div class="filter-controls">
+      <div class="filter-item">
+        <label>Catégorie</label>
+        <select>
+          <option>Toutes les catégories</option>
+          <option>High-Tech</option>
+          <option>Mode</option>
+          <option>Maison</option>
+        </select>
+      </div>
+
+      <div class="filter-item">
+        <label>Prix Max</label>
+        <select>
+          <option>Tous les prix</option>
+          <option>Moins de 50€</option>
+          <option>50€ - 200€</option>
+          <option>Plus de 200€</option>
+        </select>
+      </div>
+
+      <div class="filter-item">
+        <label>Trier par</label>
+        <select>
+          <option>Nouveautés</option>
+          <option>Prix croissant</option>
+          <option>Prix décroissant</option>
+        </select>
+      </div>
+
+      <button class="btn-filter-action">
+        <span>🔍</span> Appliquer les filtres
+      </button>
+    </div>
+  </header>
+
+  <main class="products-grid">
+    <div class="product-card" *ngFor="let item of [1,2,3,4,5,6,7,8]">
+      <div class="discount-badge">-10%</div>
+      <img src="https://picsum.photos/id/26/300/200" alt="Produit" class="product-img">
+      <div class="product-details">
+        <span class="category-tag">Maison</span>
+        <h3>Réveil Vintage</h3>
+        <div class="price-container">
+          <span class="old-price">40€</span>
+          <span class="current-price">36€</span>
+        </div>
+        <button class="btn-add">Ajouter au panier</button>
+      </div>
+    </div>
+  </main>
+</div>
