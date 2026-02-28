@@ -45,6 +45,7 @@ const routes: Routes = [
       { path: 'budgets', component: GestionBudget },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'register-boutique', component: RegisterBoutique },
+      { path: 'produits', component: Produits }
     ]
   },
 

@@ -1,1 +1,149 @@
-<h1>Poty mery</h1>
+<div class="produits-container">
+
+  <!-- CHOIX BOUTIQUE -->
+  <div class="boutique-select">
+    <h3>Choisir Boutique</h3>
+
+    <select [(ngModel)]="selectedBoutiqueId"
+            (change)="onBoutiqueChange()"
+            name="boutiqueSelect">
+
+      <option value="">-- Sélectionner --</option>
+
+      <option *ngFor="let b of boutiques"
+              [value]="b._id">
+        {{ b.nomboutique }}
+      </option>
+
+    </select>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div class="form-section" *ngIf="selectedBoutiqueId">
+    <h2>{{ selectedProduit ? 'Modifier Produit' : 'Créer Produit' }}</h2>
+
+    <form (ngSubmit)="selectedProduit ? updateProduit() : createProduit()">
+
+      <input type="text"
+             placeholder="Nom produit"
+             [(ngModel)]="produitForm.nomproduit"
+             name="nomproduit"
+             required>
+
+      <input type="number"
+             placeholder="Prix"
+             [(ngModel)]="produitForm.prix"
+             name="prix"
+             required>
+
+      <input type="text"
+             placeholder="Description"
+             [(ngModel)]="produitForm.description"
+             name="description">
+
+      <input type="number"
+             placeholder="Quantité"
+             [(ngModel)]="produitForm.quantite"
+             name="quantite"
+             required>
+
+      <input type="number"
+             placeholder="Seuil quantité"
+             [(ngModel)]="produitForm.seuilquantite"
+             name="seuilquantite">
+
+      <select [(ngModel)]="produitForm.categorieproduit"
+              name="categorieproduit"
+              (change)="onCategorieChange()"
+              required>
+
+        <option value="">Choisir catégorie</option>
+
+        <option *ngFor="let c of categories"
+                [value]="c._id">
+          {{ c.nom }}
+        </option>
+
+        <option value="new">+ Nouvelle catégorie</option>
+
+      </select>
+      <div *ngIf="isNewCategorie">
+
+        <input type="text"
+               placeholder="Nom nouvelle catégorie"
+               [(ngModel)]="newCategorieName"
+               name="newCategorieName">
+
+        <button type="button" (click)="createCategorie()">
+          Ajouter
+        </button>
+
+      </div>
+
+      <select [(ngModel)]="produitForm.statut"
+              name="statut">
+        <option [value]="0">Publié</option>
+        <option [value]="1">Caché</option>
+      </select>
+
+      <input type="number"
+             placeholder="Promotion (%)"
+             [(ngModel)]="produitForm.promotion"
+             name="promotion">
+
+      <div class="form-buttons">
+        <button type="submit">
+          {{ selectedProduit ? 'Mettre à jour' : 'Créer' }}
+        </button>
+
+        <button type="button"
+                *ngIf="selectedProduit"
+                (click)="resetForm()">
+          Annuler
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- TABLE PRODUITS -->
+  <div class="table-section" *ngIf="selectedBoutiqueId">
+
+    <h2>Produits de la boutique</h2>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Catégorie</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>Statut</th>
+        <th>Promo</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let p of produits">
+        <td>{{ p.nomproduit }}</td>
+        <td>{{ p.categorieproduit?.nom }}</td>
+        <td>{{ p.prix }} Ar</td>
+        <td>{{ p.quantite }}</td>
+        <td>
+          {{ p.statut === 0 ? 'Publié' : 'Caché' }}
+        </td>
+        <td>
+          {{ p.promotion > 0 ? '-' + p.promotion + '%' : '-' }}
+        </td>
+        <td>
+          <button (click)="editProduit(p)">Modifier</button>
+          <button (click)="deleteProduit(p._id)">Supprimer</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
