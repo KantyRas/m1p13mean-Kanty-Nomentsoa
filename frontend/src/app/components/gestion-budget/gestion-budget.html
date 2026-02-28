@@ -2,10 +2,10 @@
   <div class="filter-bar">
     <div class="filter-group">
       <label>Période :</label>
-      <input type="date" class="input-field" value="2024-01-01">
+      <input type="date" [(ngModel)]="dateDebut" name="dateDebut" class="input-field" >
       <span>au</span>
-      <input type="date" class="input-field" value="2024-01-31">
-      <button class="btn btn-filter">Filtrer</button>
+      <input type="date" [(ngModel)]="dateFin" name="dateFin" class="input-field" >
+      <button class="btn btn-filter" (click)="filtrerDepenses()">Filtrer</button>
     </div>
   </div>
 
@@ -20,37 +20,34 @@
             <tr>
               <th>Description</th>
               <th>Date</th>
-              <th>Budget</th>
+              <th>Somme</th>
               <th>Catégorie</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><strong>Abonnement AWS</strong></td>
-              <td>15/01/2024</td>
-              <td class="amount">240,00 €</td>
-              <td><span class="badge tech">Technologie</span></td>
-            </tr>
-            <tr>
-              <td><strong>Fournitures Bureau</strong></td>
-              <td>12/01/2024</td>
-              <td class="amount">45,50 €</td>
-              <td><span class="badge office">Fournitures</span></td>
-            </tr>
-            <tr>
-              <td><strong>Campagne Ads</strong></td>
-              <td>10/01/2024</td>
-              <td class="amount">1 200,00 €</td>
-              <td><span class="badge marketing">Marketing</span></td>
-            </tr>
-            <tr>
-              <td><strong>Déjeuner Client</strong></td>
-              <td>08/01/2024</td>
-              <td class="amount">89,00 €</td>
-              <td><span class="badge travel">Déplacement</span></td>
+            <tr *ngFor="let depense of depenses">
+              <td><strong>{{ depense.description}}</strong></td>
+              <td>{{ depense.date | date:'dd/MM/yyyy'}}</td>
+              <td class="amount">{{ depense.somme }} MGA</td>
+              <td><span class="badge office">{{ depense.categorie }}</span></td>
+              <td>
+                <button class="btn-supprimer" (click)="deleteDepense(depense._id)">
+                &#128465;
+              </button>
+              </td>
             </tr>
           </tbody>
+          <!-- <tfoot>
+            <tr class="total-row">
+              <td colspan="2" class="text-right"><strong>Total</strong></td>
+              <td class="amount-total">100000 MGA</td>
+              <td colspan="2"></td> </tr>
+          </tfoot> -->
         </table>
+        <div class="total-container">
+        <span class="total-label">Total des dépenses :</span>
+        <span class="total-amount">{{ calculerTotal()}} MGA</span>
+      </div>
       </div>
     </div>
 
@@ -58,29 +55,29 @@
       <div class="section-header">
         <h3>Nouvelle dépense</h3>
       </div>
-      <form class="expense-form">
+      <form class="expense-form" (ngSubmit)="createDepense()">
         <div class="form-group">
-          <label>Description</label>
-          <input type="text" placeholder="Désignation de la dépense...">
+          <label >Description</label>
+          <input type="text" [(ngModel)]="depenseForm.description" name="description" placeholder="Désignation de la dépense...">
         </div>
         <div class="form-group">
           <label>Date</label>
-          <input type="date">
+          <input type="date" [(ngModel)]="depenseForm.date" name="date">
         </div>
         <div class="form-group">
-          <label>Budget (€)</label>
-          <input type="number" placeholder="0.00">
+          <label>Somme (MGA)</label>
+          <input type="number" [(ngModel)]="depenseForm.somme" name="somme" placeholder="0">
         </div>
         <div class="form-group">
           <label>Catégorie</label>
-          <select>
-            <option value="">Sélectionner...</option>
-            <option>Technologie</option>
-            <option>Marketing</option>
-            <option>Fournitures</option>
+          <select [(ngModel)]="depenseForm.categorie" name="categorie">
+            <option value="" disabled selected>-- Choisir une catégorie --</option>
+            <option *ngFor="let categorie of categories" [value]="categorie">
+              {{ categorie }}
+            </option>
           </select>
         </div>
-        <button type="button" class="btn btn-submit">Enregistrer la dépense</button>
+        <button type="submit" class="btn btn-submit">Enregistrer la dépense</button>
       </form>
     </div>
   </div>

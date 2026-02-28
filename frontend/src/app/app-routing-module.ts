@@ -13,6 +13,7 @@ import {RegisterBoutique} from './components/register-boutique/register-boutique
 import { RegisterClient } from './components/register-client/register-client';
 import { HomeClient } from './components/home-client/home-client';
 import {GestionBoutique} from './components/gestion-boutique/gestion-boutique';
+import { VisiterBoutique } from './components/visiter-boutique/visiter-boutique';
 
 const routes: Routes = [
 
@@ -22,6 +23,7 @@ const routes: Routes = [
     component: Home,
     children: [
       {path: '', component: HomeClient},
+      {path: 'visiter-boutique', component: VisiterBoutique},
     ]
   },
   { path: 'login', component: Login }, // page login accessible via /login

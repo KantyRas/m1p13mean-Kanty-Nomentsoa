@@ -40,20 +40,10 @@
   <section class="section-wrapper">
     <h2 class="section-title">Nos Boutiques</h2>
     <div class="shop-grid">
-      <div class="shop-card">
+      <div class="shop-card" *ngFor="let boutique of boutiques">
         <div class="shop-logo">TH</div>
-        <h3>Tech Hub</h3>
-        <button class="btn-outline">Visiter</button>
-      </div>
-      <div class="shop-card">
-        <div class="shop-logo">ME</div>
-        <h3>Mod'Elles</h3>
-        <button class="btn-outline">Visiter</button>
-      </div>
-      <div class="shop-card">
-        <div class="shop-logo">BD</div>
-        <h3>Bio Deco</h3>
-        <button class="btn-outline">Visiter</button>
+        <h3>{{ boutique.nomboutique }}</h3>
+        <button class="btn-outline" routerLink="/visiter-boutique">Visiter</button>
       </div>
     </div>
   </section>
@@ -61,7 +51,7 @@
   <hr class="separator">
 
   <section class="section-wrapper">
-    <h2 class="section-title">Produits à la une (Défiler →)</h2>
+    <h2 class="section-title">Produits à la une</h2>
     
     <div class="horizontal-scroll-wrapper">
       
