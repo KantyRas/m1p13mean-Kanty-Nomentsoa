@@ -176,3 +176,51 @@
   background: #1e293b;
   color: white;
 }
+
+
+/* card pour panier */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Conteneur du panier */
+.cart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.cart-link {
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.cart-link:hover {
+  transform: scale(1.1);
+}
+
+/* Le Badge de notification */
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #ef4444; /* Rouge vif pour attirer l'oeil */
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+  border: 2px solid white; /* Détache le badge du fond */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
