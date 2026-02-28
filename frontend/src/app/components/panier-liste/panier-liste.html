@@ -1,0 +1,100 @@
+<div class="cart-container">
+  <h2 class="cart-title">Votre Panier (2 articles)</h2>
+
+  <div class="cart-layout">
+    <div class="cart-items-section">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Détails</th>
+            <th>Quantité</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cart-row">
+            <td class="col-img">
+              <img src="https://picsum.photos/id/26/100/100" alt="Réveil" class="item-thumb">
+            </td>
+            <td class="col-details">
+              <h3>Réveil Vintage</h3>
+              <p class="item-category">Maison & Déco</p>
+              <p class="item-unit-price">Prix unité : 36€</p>
+            </td>
+            <td class="col-qty">
+              <div class="qty-control">
+                <button>-</button>
+                <input type="number" value="1" readonly>
+                <button>+</button>
+              </div>
+            </td>
+            <td class="col-total">
+              <span class="total-price-text">36€</span>
+            </td>
+            <td class="col-remove">
+              <button class="btn-remove">🗑</button>
+            </td>
+          </tr>
+
+          <tr class="cart-row">
+            <td class="col-img">
+              <img src="https://picsum.photos/id/1/100/100" alt="Laptop" class="item-thumb">
+            </td>
+            <td class="col-details">
+              <h3>Laptop Gadget</h3>
+              <p class="item-category">High-Tech</p>
+              <p class="item-unit-price">Prix unité : 120€</p>
+            </td>
+            <td class="col-qty">
+              <div class="qty-control">
+                <button>-</button>
+                <input type="number" value="2" readonly>
+                <button>+</button>
+              </div>
+            </td>
+            <td class="col-total">
+              <span class="total-price-text">240€</span>
+            </td>
+            <td class="col-remove">
+              <button class="btn-remove">🗑</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <aside class="cart-summary">
+      <div class="summary-card">
+        <h3>Résumé de la commande</h3>
+        
+        <div class="summary-line">
+          <span>Sous-total</span>
+          <span>276€</span>
+        </div>
+        
+        <div class="summary-line">
+          <span>Frais de livraison</span>
+          <span class="free-shipping">Gratuit</span>
+        </div>
+
+        <!-- <div class="promo-box">
+          <input type="text" placeholder="Code promo">
+          <button>Appliquer</button>
+        </div> -->
+
+        <hr class="summary-divider">
+        
+        <div class="summary-line total">
+          <span>Total TTC</span>
+          <span>276€</span>
+        </div>
+        
+        <button class="btn-checkout">Commander</button>
+        
+        <a href="#" class="continue-shopping">← Continuer mes achats</a>
+      </div>
+    </aside>
+  </div>
+</div>

@@ -19,6 +19,8 @@ import { RegisterBoutique } from './components/register-boutique/register-boutiq
 import { RegisterClient } from './components/register-client/register-client';
 import { HomeClient } from './components/home-client/home-client';
 import { VisiterBoutique } from './components/visiter-boutique/visiter-boutique';
+import { PanierListe } from './components/panier-liste/panier-liste';
+import { ProduitDetail } from './components/produit-detail/produit-detail';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { VisiterBoutique } from './components/visiter-boutique/visiter-boutique'
     RegisterClient,
     HomeClient,
     VisiterBoutique,
+    PanierListe,
+    ProduitDetail,
   ],
   imports: [
     BrowserModule,

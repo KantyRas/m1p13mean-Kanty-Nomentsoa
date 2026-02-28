@@ -11,6 +11,12 @@
       </div>
 
       <div class="nav-right">
+        <div class="cart-wrapper" *ngIf="role === 'client' || !isLoggedIn">
+          <a routerLink="/panier-liste" class="cart-link">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-badge" >2</span>
+          </a>
+        </div>
 
         <!-- Non connecté -->
         <a *ngIf="!isLoggedIn" routerLink="/login" class="login-link">
