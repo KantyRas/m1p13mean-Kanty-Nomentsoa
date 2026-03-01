@@ -9,14 +9,21 @@ import {ProduitService} from '../../services/produit.service';
   styleUrl: './home-client.css',
 })
 export class HomeClient {
-   boutiques: any[] = [];
+  boutiques: any[] = [];
   produitsALaUne: any[] = [];
+  produits: any[] = [];
+  categories: any[] = [];
+  selectedCategorie: string = 'all';
+  selectedPrixMax: string = '';
+  selectedSort: string = '';
 constructor(private BoutiqueService: BoutiqueService,
             private produitService: ProduitService,private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.getBoutiques();
     this.getProduitsALaUne();
+    this.loadCategories();
+    this.loadAllProduits();
   }
 
    getBoutiques(){
@@ -30,6 +37,15 @@ constructor(private BoutiqueService: BoutiqueService,
       }
     });
   }
+  loadAllProduits() {
+    this.produitService.filterProduits({}).subscribe({
+      next: (data) => {
+        this.produits = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.error(err)
+    });
+  }
 
   getProduitsALaUne() {
     this.produitService.getProduitsALaUne().subscribe({
@@ -41,6 +57,38 @@ constructor(private BoutiqueService: BoutiqueService,
       error: (err) => {
         console.error('Erreur produits à la une:', err);
       }
+    });
+  }
+  applyFilters() {
+    const params: any = {};
+
+    if (this.selectedCategorie && this.selectedCategorie !== 'all') {
+      params.categorie = this.selectedCategorie;
+    }
+
+    if (this.selectedPrixMax) {
+      params.prixMax = this.selectedPrixMax;
+    }
+
+    if (this.selectedSort) {
+      params.sort = this.selectedSort;
+    }
+
+    this.produitService.filterProduits(params).subscribe({
+      next: (data) => {
+        this.produits = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.error(err)
+    });
+  }
+  loadCategories() {
+    this.produitService.getCategories().subscribe({
+      next: (data) => {
+        this.categories = data;
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.error(err)
     });
   }
 }

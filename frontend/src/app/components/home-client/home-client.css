@@ -63,6 +63,13 @@
   background: #ccc;
   border-radius: 10px;
 }
+/* Grille verticale produits */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
 
 /* Carte Produit */
 .product-card {
@@ -195,4 +202,13 @@
 
 .btn-filter-action:active {
   transform: translateY(0);
+}
+.section-wrapper {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
 }

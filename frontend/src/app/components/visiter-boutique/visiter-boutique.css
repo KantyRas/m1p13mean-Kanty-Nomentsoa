@@ -114,7 +114,7 @@
   text-transform: uppercase;
 }
 
-.filter-item select {
+.filter-item select,input {
   padding: 12px 15px;
   border-radius: 10px;
   border: 1px solid #dfe6e9;
@@ -151,7 +151,7 @@
   overflow: hidden;
   border: 1px solid #f0f0f0;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   position: relative;
   transition: transform 0.3s;
 }
@@ -172,7 +172,7 @@
 }
 
 .price-container {
-  margin-top: auto; 
+  margin-top: auto;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
