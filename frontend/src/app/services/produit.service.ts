@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +55,13 @@ export class ProduitService {
 
   filterProduits(params: any) {
     return this.http.get<any[]>(`${this.apiUrl}/filter`, { params });
+  }
+  getProduitsFilteredByBoutique(boutiqueId: string, categorie?: string, prixMax?: number, sort?: string): Observable<any[]> {
+    let params: any = {};
+    if (categorie) params.categorie = categorie;
+    if (prixMax) params.prixMax = prixMax;
+    if (sort) params.sort = sort;
+
+    return this.http.get<any[]>(`${this.apiUrl}/filter/boutique/${boutiqueId}`, { params });
   }
 }

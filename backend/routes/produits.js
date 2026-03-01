@@ -17,6 +17,7 @@ router.post('/', produitController.createProduit);
 // Lister tous les produits
 router.get('/', produitController.getAllProduits);
 router.get('/filter', produitController.filterProduits);
+router.get('/filter/boutique/:boutiqueId', produitController.filterProduitsByBoutique);
 // Produit par ID
 router.get('/:id', produitController.getProduitById);
 // Modifier produit

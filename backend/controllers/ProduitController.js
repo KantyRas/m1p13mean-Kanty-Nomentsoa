@@ -209,3 +209,48 @@ exports.filterProduits = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+// GET /api/produits/filter/boutique/:boutiqueId
+exports.filterProduitsByBoutique = async (req, res) => {
+    try {
+        const { boutiqueId } = req.params;
+        const { categorie, prixMax, sort } = req.query;
+
+        let filter = {
+            statut: 0,
+            boutiqueOwner: boutiqueId
+        };
+
+        if (categorie && categorie !== 'all') {
+            filter.categorieproduit = categorie;
+        }
+
+        if (prixMax) {
+            filter.prix = { $lte: Number(prixMax) };
+        }
+
+        let sortOption = {};
+
+        switch (sort) {
+            case 'prix_asc':
+                sortOption = { prix: 1 };
+                break;
+            case 'prix_desc':
+                sortOption = { prix: -1 };
+                break;
+            case 'new':
+                sortOption = { createdAt: -1 };
+                break;
+            default:
+                sortOption = {};
+        }
+
+        const produits = await Produit.find(filter)
+            .populate('categorieproduit', 'nom')
+            .sort(sortOption);
+
+        res.status(200).json(produits);
+
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};

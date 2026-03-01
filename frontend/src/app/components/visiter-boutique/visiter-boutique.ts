@@ -14,9 +14,13 @@ export class VisiterBoutique implements OnInit {
   categories: any[] = [];
   boutique: any = null;
   produits: any[] = [];
-  selectedCategorie: string = 'all';
+  /*selectedCategorie: string = 'all';
   selectedPrixMax: string = '';
-  selectedSort: string = '';
+  selectedSort: string = '';*/
+
+  filterCategorie: string = 'all';
+  filterPrixMax: number | null = null;
+  filterSort: string = '';
 
   boutiqueId!: string;
 
@@ -28,8 +32,7 @@ export class VisiterBoutique implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    this.boutiqueId = this.route.snapshot.paramMap.get('id')!;
+    this.boutiqueId = this.route.snapshot.paramMap.get('id') || '';
     this.loadCategories();
     this.loadBoutique();
     this.loadProduits();
@@ -50,7 +53,7 @@ export class VisiterBoutique implements OnInit {
         this.cdr.detectChanges();
       });
   }
-  applyFilters() {
+  /*applyFilters() {
     const params: any = {
       categorie: this.selectedCategorie,
       prixMax: this.selectedPrixMax,
@@ -64,7 +67,7 @@ export class VisiterBoutique implements OnInit {
       },
       error: (err) => console.error(err)
     });
-  }
+  }*/
   loadCategories() {
     this.produitService.getCategories().subscribe({
       next: (data) => {
@@ -73,5 +76,24 @@ export class VisiterBoutique implements OnInit {
       },
       error: (err) => console.error(err)
     });
+  }
+
+  applyFilter() {
+    this.produitService.getProduitsFilteredByBoutique(
+      this.boutiqueId,
+      this.filterCategorie !== 'all' ? this.filterCategorie : undefined,
+      this.filterPrixMax || undefined,
+      this.filterSort || undefined
+    ).subscribe(data => {
+      this.produits = data;
+      this.cdr.detectChanges();
+    });
+  }
+
+  resetFilter() {
+    this.filterCategorie = 'all';
+    this.filterPrixMax = null;
+    this.filterSort = '';
+    this.loadProduits();
   }
 }
