@@ -12,6 +12,7 @@ export class Register {
   name = '';
   username = '';
   password = '';
+  role = 'admin-centre';
   confirmPassword = '';
   errorMessage = '';
   successMessage = '';
@@ -26,7 +27,7 @@ export class Register {
       return;
     }
 
-    this.authService.register({ username: this.username, name: this.name, password: this.password })
+    this.authService.register({ username: this.username, name: this.name, password: this.password, role: this.role })
       .subscribe({
         next: (res) => {
           this.successMessage = 'Inscription réussie !';

@@ -7,7 +7,8 @@ import {Observable} from 'rxjs';
 })
 export class ProduitService {
 
-  private apiUrl = 'http://localhost:3000/api/produits';
+  // private apiUrl = 'http://localhost:3000/api/produits';
+  private apiUrl = 'https://m1p13mean-kanty-nomentsoa.onrender.com/api/produits';
 
   constructor(private http: HttpClient) {}
 
