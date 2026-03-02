@@ -27,7 +27,7 @@ const routes: Routes = [
       {path: '', component: HomeClient},
       {path: 'visiter-boutique/:id', component: VisiterBoutique},
       {path: 'panier-liste', component: PanierListe},
-      {path: 'produit-detail', component: ProduitDetail},
+      {path: 'produit-detail/:id', component: ProduitDetail},
     ]
   },
   { path: 'login', component: Login }, // page login accessible via /login
