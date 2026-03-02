@@ -11,6 +11,7 @@ import { Auth } from '../../services/auth';
 export class AdminLayout implements OnInit {
 
   role!: 'admin-boutique' | 'admin-centre';
+  menuLinks: { label: string; path: string }[] = [];
 
   constructor(
     private router: Router,
@@ -31,6 +32,22 @@ export class AdminLayout implements OnInit {
     } else {
       this.router.navigate(['/']);
     }
+
+    // Calculer le menu une seule fois
+    if (this.role === 'admin-boutique') {
+      this.menuLinks = [
+        { label: 'Dashboard', path: 'dashboard' },
+        { label: 'Produits', path: 'produits' }
+      ];
+    } else {
+      this.menuLinks = [
+        { label: 'Dashboard', path: 'dashboard' },
+        { label: 'Gestion Boutiques', path: 'boutiques' },
+        { label: 'Gestion Utilisateurs', path: 'users' },
+        { label: 'Gestion Comptes', path: 'accounts' },
+        { label: 'Gestion Budgets', path: 'budgets' },
+      ];
+    }
   }
 
   logout() {
@@ -38,21 +55,21 @@ export class AdminLayout implements OnInit {
     this.router.navigate(['/']);
   }
 
-  get menuLinks() {
+  // get menuLinks() {
 
-    if (this.role === 'admin-boutique') {
-      return [
-        { label: 'Dashboard', path: 'dashboard' },
-        { label: 'Produits', path: 'produits' }
-      ];
-    }
+  //   if (this.role === 'admin-boutique') {
+  //     return [
+  //       { label: 'Dashboard', path: 'dashboard' },
+  //       { label: 'Produits', path: 'produits' }
+  //     ];
+  //   }
 
-    return [
-      { label: 'Dashboard', path: 'dashboard' },
-      { label: 'Gestion Boutiques', path: 'boutiques' },
-      { label: 'Gestion Utilisateurs', path: 'users' },
-      { label: 'Gestion Comptes', path: 'accounts' },
-      { label: 'Gestion Budgets', path: 'budgets' },
-    ];
-  }
+  //   return [
+  //     { label: 'Dashboard', path: 'dashboard' },
+  //     { label: 'Gestion Boutiques', path: 'boutiques' },
+  //     { label: 'Gestion Utilisateurs', path: 'users' },
+  //     { label: 'Gestion Comptes', path: 'accounts' },
+  //     { label: 'Gestion Budgets', path: 'budgets' },
+  //   ];
+  // }
 }
