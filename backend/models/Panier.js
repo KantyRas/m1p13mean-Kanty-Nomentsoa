@@ -4,9 +4,16 @@ const Schema = mongoose.Schema;
 const Panier = mongoose.Schema(
     {
         proprietaire:{
-            type: [Schema.Types.ObjectId],
-            ref: "User"
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            default: null
         },
+
+        guestId: {
+            type: String,
+            default: null
+        },
+
         details: [
             {
                 produit: {

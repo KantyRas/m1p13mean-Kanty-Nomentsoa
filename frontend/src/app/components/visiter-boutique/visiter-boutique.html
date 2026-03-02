@@ -92,7 +92,7 @@
                     }} Ar
           </span>
         </div>
-        <button class="btn-add" routerLink="/produit-detail">Ajouter au panier</button>
+        <button class="btn-add" [routerLink]="['/produit-detail', item._id]">Ajouter au panier</button>
       </div>
     </div>
   </main>
