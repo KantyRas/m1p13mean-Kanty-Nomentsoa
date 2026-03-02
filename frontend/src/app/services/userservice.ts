@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Userservice {
-  private apiUrl = 'http://localhost:3000/user';
+  // private apiUrl = 'http://localhost:3000/user';
+  private apiUrl = 'https://m1p13mean-kanty-nomentsoa.onrender.com/user';
+
 
   constructor(private http: HttpClient) {}
 

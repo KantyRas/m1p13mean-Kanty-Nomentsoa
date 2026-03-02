@@ -10,7 +10,8 @@ import { Auth } from './auth';
 export class Panierservice {
   private readonly STORAGE_KEY = 'panier_visiteur';
 
-  private apiUrl = 'http://localhost:3000/api/panier';
+  // private apiUrl = 'http://localhost:3000/api/panier';
+  private apiUrl = 'https://m1p13mean-kanty-nomentsoa.onrender.com/api/panier';
 
   constructor(private http: HttpClient, private authService: Auth) {}
 

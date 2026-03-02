@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class BoutiqueService {
 
-  private apiUrl = 'http://localhost:3000/admin/gestboutiques';
+  // private apiUrl = 'http://localhost:3000/admin/gestboutiques';
+  private apiUrl = 'https://m1p13mean-kanty-nomentsoa.onrender.com/admin/gestboutiques';
+
 
   constructor(private http: HttpClient) {}
 

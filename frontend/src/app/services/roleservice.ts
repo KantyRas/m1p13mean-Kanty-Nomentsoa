@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Roleservice {
-  private apiUrl = 'http://localhost:3000/roles';
+  // private apiUrl = 'http://localhost:3000/roles';
+  private apiUrl = 'https://m1p13mean-kanty-nomentsoa.onrender.com/roles';
 
   constructor(private http: HttpClient) {}
 
