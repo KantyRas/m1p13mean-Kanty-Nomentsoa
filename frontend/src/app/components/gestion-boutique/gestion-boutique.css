@@ -1,0 +1,359 @@
+/* CONTAINER GLOBAL */
+.gestion-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+/* --- STATISTIQUES --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  border-left: 5px solid #3498db; /* Bleu par défaut */
+  transition: transform 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: #7f8c8d;
+}
+
+.stat-card p {
+  margin: 10px 0 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.stat-card.libre { border-left-color: #2ecc71; }
+.stat-card.occupee { border-left-color: #e74c3c; }
+
+/* --- FILTRES --- */
+.filter {
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 10px;
+}
+
+.filter button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter button:hover {
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+}
+
+/* --- FORMULAIRE --- */
+.form-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2.5rem;
+}
+
+.form-section h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 10px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+input, select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #3498db;
+}
+
+.form-buttons {
+  grid-column: 1 / -1; /* Prend toute la largeur */
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+button[type="submit"] {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button[type="button"] {
+  background-color: #95a5a6;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* --- TABLEAU --- */
+.table-section {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th {
+  background-color: #f8f9fa;
+  color: #7f8c8d;
+  text-align: left;
+  padding: 15px;
+  font-weight: 600;
+  border-bottom: 2px solid #eee;
+}
+
+td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+tr:hover {
+  background-color: #fcfcfc;
+}
+
+/* BADGES DE STATUT */
+.badge-libre, .badge-occupee {
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.badge-libre {
+  background-color: #eafaf1;
+  color: #27ae60;
+}
+
+.badge-occupee {
+  background-color: #fdedec;
+  color: #e74c3c;
+}
+
+/* ACTIONS TABLEAU */
+.table-section button {
+  padding: 6px 12px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.table-section button:first-child {
+  background-color: #f39c12;
+  color: white;
+}
+
+.table-section button:last-child {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- MODAL BACKDROP --- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond noir semi-transparent */
+  backdrop-filter: blur(4px);           /* Effet de flou sur l'arrière-plan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;                        /* Pour passer au-dessus de tout */
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* --- FENÊTRE MODALE --- */
+.modal {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+/* --- ÉLÉMENTS DE FORMULAIRE --- */
+.modal label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: -10px; /* Rapproche le label de son input */
+  color: #7f8c8d;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box; /* Évite que l'input dépasse */
+  transition: border-color 0.2s;
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+.modal p {
+  display: flex;
+  justify-content: space-between; /* Aligne le label à gauche et la valeur à droite */
+  padding: 12px 0;
+  margin: 0;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.modal p:last-of-type {
+  border-bottom: none; /* Enlève la ligne pour le dernier élément */
+}
+
+.modal p strong {
+  color: #7f8c8d; /* Couleur plus douce pour les labels */
+  font-weight: 600;
+  margin-right: 15px;
+}
+
+/* Style pour les valeurs (le texte après le strong) */
+.modal p span,
+.modal p:not(strong) {
+  text-align: right;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* --- BOUTONS MODALE --- */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  transition: all 0.2s;
+}
+
+/* Enregistrer */
+.modal-buttons button:first-child {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #27ae60;
+}
+
+/* Annuler */
+.modal-buttons button:last-child {
+  background-color: #ecf0f1;
+  color: #7f8c8d;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #bdc3c7;
+  color: white;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

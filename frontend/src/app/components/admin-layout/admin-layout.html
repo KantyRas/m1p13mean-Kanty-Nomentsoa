@@ -1,0 +1,26 @@
+<div class="admin-container">
+
+  <aside class="sidebar">
+
+    <div class="sidebar-top">
+      <h2>Admin Centre Commercial</h2>
+      <nav class="menu">
+        <a *ngFor="let link of menuLinks" [routerLink]="link.path" routerLinkActive="active">
+        {{ link.label }}
+      </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-bottom">
+      <button (click)="logout()">Déconnexion</button>
+      <p>RASOLOFOMANANA Kanty</p>
+      <p>RAKOTOARIVONY Nomentsoa</p>
+    </div>
+
+  </aside>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

@@ -1,0 +1,70 @@
+<div class="product-page-container">
+  
+  <div class="product-layout">
+    <main class="product-main-card" *ngFor="let produit of produits">
+      <div class="product-gallery">
+        <img src="https://picsum.photos/id/2/600/400" alt="Produit" class="main-image">
+        <div class="discount-tag">Nouveauté</div>
+      </div>
+
+      <div class="product-info-content">
+        <div class="brand-badge">{{ produit.nomproduit }}</div>
+        <h1>{{ produit.nomproduit }}</h1>
+        
+        <div class="rating-row">
+          <div class="stars">⭐⭐⭐⭐★</div>
+          <span class="reviews-count">(48 avis clients)</span>
+        </div>
+
+        <p class="product-description">
+          {{ produit.description }}
+        </p>
+
+        <div class="product-specs">
+          <div class="spec-item"><strong>Marque:</strong> {{ produit.nomproduit }}</div>
+          <div class="spec-item"><strong>Catégorie:</strong> {{ produit.categorieproduit.nom }}</div>
+          <div class="spec-item"><strong>Disponibilité:</strong> En stock</div>
+        </div>
+
+        <div class="purchase-zone">
+          <div class="price-big">{{ produit.prix }}MGA</div>
+          <div class="action-row">
+            <div class="qty-selector">
+              <button (click)="decrement()">-</button>
+                <input type="number" [value]="quantite" readonly>
+              <button (click)="increment()">+</button>
+            </div>
+            <button class="btn-add-main" (click)="addPanier(produit._id, produit.prix)">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <aside class="cart-sidebar">
+      <div class="summary-card">
+        <h3>Mon Panier</h3>
+        
+        <div class="mini-cart-list" *ngFor="let panier of paniers">
+          <div class="mini-item" *ngFor="let item of panier.details">
+            <img src="https://picsum.photos/id/26/50/50" alt="Item">
+            <div class="mini-item-info">
+              <span class="mini-name">{{ item.produit.nomproduit }}</span>
+              <span class="mini-price">{{ item.quantite }} x {{ item.prix | number:'1.0-0' }} MGA</span>
+            </div>
+            <button class="mini-remove" (click)="removeItem(item.produit._id)">🗑</button>
+          </div>
+        </div>
+
+        <div class="summary-totals" *ngFor="let panier of paniers">
+          <div class="total-line main-total">
+            <span>Total TTC</span>
+            <span>{{ panier.totalAmount | number:'1.0-0' }} MGA</span>
+          </div>
+        </div>
+
+        <button class="btn-checkout-side" routerLink="/panier-liste">Finaliser la commande</button>
+      </div>
+    </aside>
+  </div>
+
+</div>

@@ -1,0 +1,58 @@
+<div class="home-container">
+  <header class="home-header">
+    <h1>Bienvenue sur notre E-Commerce</h1>
+    <nav class="nav-bar">
+
+      <div class="nav-left">
+        <a routerLink="" routerLinkActive>Accueil</a>
+        <a routerLink="" >Produits</a>
+        <a routerLink="#">Promotions</a>
+        <a routerLink="#">Contact</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="cart-wrapper" *ngIf="role === 'client' || !isLoggedIn">
+          <a routerLink="/panier-liste" class="cart-link">
+            <span class="cart-icon">🛒</span>
+            <!-- <span class="cart-badge" >2</span> -->
+          </a>
+        </div>
+
+        <!-- Non connecté -->
+        <a *ngIf="!isLoggedIn" routerLink="/login" class="login-link">
+          Se connecter
+        </a>
+
+        <!-- Connecté -->
+        <div *ngIf="isLoggedIn" class="user-box">
+          <span class="role-badge">
+            {{ role === 'client' ? '👤 Client' :
+            role === 'admin-centre' ? '🛠 Admin Centre' :
+              '🛠 Admin Boutique' }}
+          </span>
+
+          <!-- Dashboard seulement si admin -->
+          <button
+            *ngIf="role !== 'client'"
+            (click)="goToDashboard()"
+            class="dashboard-btn">
+            Dashboard
+          </button>
+
+          <button (click)="logout()" class="logout-btn">
+            Déconnexion
+          </button>
+        </div>
+
+      </div>
+
+    </nav>
+  </header>
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="home-footer">
+    <p>© Kanty - Nomentsoa</p>
+  </footer>
+</div>

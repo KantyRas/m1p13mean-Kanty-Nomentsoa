@@ -1,0 +1,76 @@
+<h2>Dashboard</h2>
+
+<!-- Admin Boutique -->
+<div *ngIf="role === 'admin-boutique'">
+  <h3>Tableau de bord Boutique</h3>
+  <p>Statistiques des produits</p>
+  <p>Ventes du jour</p>
+  <p>Stock disponible</p>
+</div>
+
+<!-- Admin Centre -->
+<div *ngIf="role === 'admin-centre'">
+  <div class="dashboard-wrapper">
+  <div class="stats-grid">
+    <div class="card">
+      <div class="card-icon blue">🏪</div>
+      <div class="card-info">
+        <span class="label">Total Boutiques</span>
+        <span class="value">24</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon green">💰</div>
+      <div class="card-info">
+        <span class="label">Revenu Global</span>
+        <span class="value">12 450 €</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon purple">👥</div>
+      <div class="card-info">
+        <span class="label">Utilisateurs</span>
+        <span class="value">1 205</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon orange">📈</div>
+      <div class="card-info">
+        <span class="label">Visiteurs</span>
+        <span class="value">45.2k</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-area">
+    <div class="header">
+      <h2>Liste des Utilisateurs</h2>
+      <button class="btn btn-add"  routerLink="/admin/register-boutique">+ Ajouter</button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nom d'utilisateur</th>
+            <th>User</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td><strong>{{ user.name }}</strong></td>
+            <td>{{ user.username}}</td>
+            <td *ngFor="let role of user.roles"><span class="status active">{{ role.rolename }}</span></td>
+            <td><button class="btn-view">Détails</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>

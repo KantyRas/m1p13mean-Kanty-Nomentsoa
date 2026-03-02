@@ -1,0 +1,67 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProduitService {
+
+  private apiUrl = 'http://localhost:3000/api/produits';
+
+  constructor(private http: HttpClient) {}
+
+  getAll() {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+  getById(id: string) {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+  create(data: any) {
+    return this.http.post<any>(this.apiUrl, data);
+  }
+  update(id: string, data: any) {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, data);
+  }
+  delete(id: string) {
+    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  }
+  getByBoutique(boutiqueId: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/boutique/${boutiqueId}`);
+  }
+  getByCategorie(categorieId: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/categorie/${categorieId}`);
+  }
+  getDisponibles(boutiqueId: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/statut/${boutiqueId}`);
+  }
+
+  getPromotion() {
+    return this.http.get<any[]>(`${this.apiUrl}/promotion`);
+  }
+
+  getStockFaible() {
+    return this.http.get<any[]>(`${this.apiUrl}/stock-faible`);
+  }
+  getCategories() {
+    return this.http.get<any[]>(`${this.apiUrl}/categories`);
+  }
+  createCategorie(data: any) {
+    return this.http.post<any>(`${this.apiUrl}/categories`, data);
+  }
+  getProduitsALaUne() {
+    return this.http.get<any[]>(`${this.apiUrl}/alaune`);
+  }
+
+  filterProduits(params: any) {
+    return this.http.get<any[]>(`${this.apiUrl}/filter`, { params });
+  }
+  getProduitsFilteredByBoutique(boutiqueId: string, categorie?: string, prixMax?: number, sort?: string): Observable<any[]> {
+    let params: any = {};
+    if (categorie) params.categorie = categorie;
+    if (prixMax) params.prixMax = prixMax;
+    if (sort) params.sort = sort;
+
+    return this.http.get<any[]>(`${this.apiUrl}/filter/boutique/${boutiqueId}`, { params });
+  }
+}

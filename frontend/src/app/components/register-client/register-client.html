@@ -1,0 +1,36 @@
+<div class="page-wrapper">
+  <div class="register-container">
+    <h2>Inscription</h2>
+    
+    <form (ngSubmit)="OnRegisterClient()">
+      <div class="input-group">
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Nom" required>
+        <input type="text" [(ngModel)]="phone" name="phone" placeholder="Numero de telephone" required>
+        <input type="text" [(ngModel)]="email" name="mail" placeholder="Adresse Mail" required>
+        <input type="text" [(ngModel)]="adresse" name="adresse" placeholder="Adresse complète" required>
+        <div class="row">
+          <label for="dateNaissance">Date de naissance</label>
+          <input type="date" [(ngModel)]="dateNaissance" name="dateNaissance" title="Date de naissance" required>
+          <select [(ngModel)]="genre" name="genre" required>
+            <option value="" disabled selected>Choisir un genre</option>
+            <option value="Masculin">Masculin</option>
+            <option value="Feminin">Féminin</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <input type="text" [(ngModel)]="username" name="username" placeholder="Nom d'utilisateur" required>
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Mot de passe" required>
+        <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirmer mot de passe" required>
+      </div>
+
+      <button type="submit" class="submit-btn">S'enregistrer</button>
+
+      <div *ngIf="errorMessage" class="error-container shake">
+        <span class="error-icon">⚠️</span>
+        <div class="error-text">
+          <strong>Erreur :</strong> {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

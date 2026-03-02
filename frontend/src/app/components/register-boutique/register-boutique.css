@@ -1,0 +1,79 @@
+/* Conteneur principal pour centrer horizontalement en haut */
+.page-wrapper {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: flex-start; /* Aligne vers le haut */
+  min-height: 100vh;
+  padding-top: 50px; /* Espace par rapport au haut de l'écran */
+  background-color: #f4f7f6; /* Optionnel : fond léger */
+}
+
+.register-container {
+  width: 100%;
+  max-width: 500px; /* Plus large qu'un formulaire standard */
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espace entre les champs */
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box; /* Évite que le padding ne dépasse */
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 15px;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Style de l'erreur */
+.error-container {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
