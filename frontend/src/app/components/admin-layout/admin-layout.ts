@@ -36,7 +36,7 @@ export class AdminLayout implements OnInit {
     // Calculer le menu une seule fois
     if (this.role === 'admin-boutique') {
       this.menuLinks = [
-        { label: 'Dashboard', path: 'dashboard' },
+        // { label: 'Dashboard', path: 'dashboard' },
         { label: 'Produits', path: 'produits' }
       ];
     } else {

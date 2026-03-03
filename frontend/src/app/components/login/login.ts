@@ -40,9 +40,14 @@ export class Login {
 
         if (role === 'client') {
           this.router.navigate(['/']);
-        } else if (role === 'admin-boutique' || role === 'admin-centre') {
+        }
+        if (role === 'admin-boutique') {
+          this.router.navigate(['/admin/produits']);
+        } 
+        else if (role === 'admin-centre') {
           this.router.navigate(['/admin/dashboard']);
-        } else {
+        } 
+        else {
           this.router.navigate(['/']);
         }
         //this.router.navigate([`/dashboard/${role}`]);

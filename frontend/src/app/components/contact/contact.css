@@ -1,0 +1,115 @@
+:host {
+  display: block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px 20px;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+.contact-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  border-bottom: 3px solid #3498db;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Formulaire */
+.contact-form {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box; /* Important pour le layout */
+}
+
+.btn-submit {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #2980b9;
+}
+
+/* Cartes Équipe */
+.contact-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border-left: 5px solid #3498db;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: #ecf0f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: #3498db;
+  margin-right: 20px;
+}
+
+.details h3 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.role {
+  color: #7f8c8d;
+  font-size: 0.9em;
+  margin-bottom: 8px;
+}
+
+.extra-info {
+  margin-top: 30px;
+  padding: 20px;
+  background: #e1f5fe;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}
