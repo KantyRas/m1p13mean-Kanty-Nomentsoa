@@ -2,13 +2,17 @@ const express = require('express');
 const router = express.Router();
 const produitController = require('../controllers/ProduitController');
 const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => { cb(null, 'uploads/'); }, // Assurez-vous que ce dossier existe
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'produits', // Nom du dossier dans Cloudinary
+    allowed_formats: ['jpg', 'png', 'jpeg'],
+  },
 });
+
 const upload = multer({ storage: storage });
 
 

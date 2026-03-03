@@ -4,6 +4,13 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const app = express();
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: 'dwj1kg9qp',
+  api_key: '671275842247747',
+  api_secret: 'WqNZkWgRGMnt3ivKQUoH3Lexyos'
+});
 
 const PORT = process.env.PORT || 3000;
 
