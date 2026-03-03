@@ -22,11 +22,28 @@ exports.getAllCategories = async (req, res) => {
 
 exports.createProduit = async (req, res) => {
     try {
-        const produit = new Produit(req.body);
+        console.log("Fichier reçu :", req.file); // Debug
+        console.log("Corps reçu :", req.body); // Debug
+
+        if (!req.file) {
+            return res.status(400).json({ message: "L'image est manquante ou le format est invalide" });
+        }
+
+        const produitData = {
+            ...req.body,
+            image: req.file.path // URL Cloudinary
+        };
+
+        const produit = new Produit(produitData);
         const savedProduit = await produit.save();
         res.status(201).json(savedProduit);
     } catch (error) {
-        res.status(500).json({ error });
+        console.error("Erreur détaillée :", error); // Apparaîtra dans les logs Render
+        res.status(500).json({ 
+            message: "Erreur serveur", 
+            detail: error.message, // On renvoie l'erreur réelle
+            stack: error.stack 
+        });
     }
 };
 

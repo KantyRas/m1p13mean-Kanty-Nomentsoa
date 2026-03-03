@@ -91,6 +91,14 @@
              [(ngModel)]="produitForm.promotion"
              name="promotion">
 
+      <label for="image">Image du produit</label>
+      <input 
+      type="file" 
+      id="image" 
+      class="form-control" 
+      (change)="onFileSelected($event)" 
+      accept="image/*">
+
       <div class="form-buttons">
         <button type="submit">
           {{ selectedProduit ? 'Mettre à jour' : 'Créer' }}

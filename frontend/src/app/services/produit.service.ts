@@ -18,7 +18,7 @@ export class ProduitService {
   getById(id: string) {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
-  create(data: any) {
+  create(data: FormData) { // Type changé en FormData
     return this.http.post<any>(this.apiUrl, data);
   }
   update(id: string, data: any) {

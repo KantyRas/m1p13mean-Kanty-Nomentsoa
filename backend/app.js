@@ -4,12 +4,26 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const app = express();
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: 'dwj1kg9qp',
+  api_key: '671275842247747',
+  api_secret: 'WqNZkWgRGMnt3ivKQUoH3Lexyos'
+});
 
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: '*', // Pour le test, autorisez tout. Si ça marche, remplacez par votre URL frontend.
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
+}));
+
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connexion à MongoDB
 mongoose.connect(process.env.MONGO_URI)

@@ -16,7 +16,10 @@
         <tbody *ngFor="let panier of paniers">
           <tr class="cart-row" *ngFor="let item of panier.details">
             <td class="col-img">
-              <img src="https://picsum.photos/id/26/100/100" alt="Réveil" class="item-thumb">
+              <img 
+              [src]="item.produit.image" 
+              [alt]="item.produit.nomproduit" 
+              class="item-thumb">
             </td>
             <td class="col-details">
               <h3>{{ item.produit.nomproduit }}</h3>

@@ -22,7 +22,7 @@ exports.getPanier = async (req, res) => {
       panier = await Panier.findOne({ proprietaire })
         .populate({
         path: 'details.produit', 
-        select: 'nomproduit prix categorieproduit', 
+        select: 'nomproduit prix image categorieproduit', 
         populate: {                      
           path: 'categorieproduit',       
           select: 'nomcategorie'          
@@ -35,7 +35,7 @@ exports.getPanier = async (req, res) => {
       panier = await Panier.findOne({ guestId })
         .populate({
         path: 'details.produit',       
-        select: 'nomproduit prix categorieproduit',
+        select: 'nomproduit prix image categorieproduit',
         populate: {                       
           path: 'categorieproduit',       
           select: 'nom'       
