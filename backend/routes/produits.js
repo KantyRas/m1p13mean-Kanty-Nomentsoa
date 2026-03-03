@@ -1,6 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const produitController = require('../controllers/ProduitController');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => { cb(null, 'uploads/'); }, // Assurez-vous que ce dossier existe
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
 
 
 // Créer catégorie
@@ -13,7 +22,7 @@ router.get('/promotion', produitController.getProduitsEnPromotion);
 // Produits stock faible
 router.get('/stock-faible', produitController.getProduitsStockFaible);
 // Créer produit
-router.post('/', produitController.createProduit);
+router.post('/',upload.single('image'), produitController.createProduit);
 // Lister tous les produits
 router.get('/', produitController.getAllProduits);
 router.get('/filter', produitController.filterProduits);

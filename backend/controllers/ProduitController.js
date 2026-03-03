@@ -22,11 +22,18 @@ exports.getAllCategories = async (req, res) => {
 
 exports.createProduit = async (req, res) => {
     try {
-        const produit = new Produit(req.body);
+        const url = req.protocol + "://" + req.get("host");
+        const produitData = {
+            ...req.body,
+            // On stocke l'URL complète vers le fichier
+            image: req.file ? url + "/uploads/" + req.file.filename : null 
+        };
+        
+        const produit = new Produit(produitData);
         const savedProduit = await produit.save();
         res.status(201).json(savedProduit);
     } catch (error) {
-        res.status(500).json({ error });
+        res.status(500).json({ error: error.message });
     }
 };
 
