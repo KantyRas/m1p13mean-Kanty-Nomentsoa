@@ -25,12 +25,37 @@
   margin-bottom: 40px;
 }
 
+/* Style de base de la carte */
 .shop-card {
   background: white;
-  padding: 20px;
+  padding: 30px;
+  border-radius: 16px;
   text-align: center;
-  border-radius: 15px;
   border: 1px solid #eee;
+  
+  /* Transition fluide : indispensable pour le hover ! */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- EFFET SUR LA CARTE --- */
+.shop-card:hover {
+  /* On soulève la carte et on ajoute une ombre profonde */
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+  border-color: #3498db; /* Optionnel : colore la bordure au survol */
+}
+
+/* --- EFFET SUR LE TITRE --- */
+.shop-card h3 {
+  transition: color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.shop-card:hover h3 {
+  color: #3498db; /* Le texte change de couleur au survol de la carte */
 }
 
 .shop-logo {

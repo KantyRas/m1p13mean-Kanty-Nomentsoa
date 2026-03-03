@@ -3,7 +3,10 @@
   <div class="product-layout">
     <main class="product-main-card" *ngFor="let produit of produits">
       <div class="product-gallery">
-        <img src="https://picsum.photos/id/2/600/400" alt="Produit" class="main-image">
+        <img 
+          [src]="produit.image" 
+          [alt]="produit.nomproduit" 
+          class="product-img">
         <div class="discount-tag">Nouveauté</div>
       </div>
 
@@ -46,7 +49,10 @@
         
         <div class="mini-cart-list" *ngFor="let panier of paniers">
           <div class="mini-item" *ngFor="let item of panier.details">
-            <img src="https://picsum.photos/id/26/50/50" alt="Item">
+            <img 
+              [src]="item.produit.image" 
+              [alt]="item.produit.nomproduit" 
+              class="product-img">
             <div class="mini-item-info">
               <span class="mini-name">{{ item.produit.nomproduit }}</span>
               <span class="mini-price">{{ item.quantite }} x {{ item.prix | number:'1.0-0' }} MGA</span>

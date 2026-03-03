@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Depenseservice {
-  private apiUrl = 'http://localhost:3000/depense';
+  // private apiUrl = 'http://localhost:3000/depense';
+  private apiUrl = 'https://m1p13mean-kanty-nomentsoa.onrender.com/depense';
+
 
   constructor(private http: HttpClient) {}
 

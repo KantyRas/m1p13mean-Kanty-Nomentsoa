@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class Auth {
 
-  private apiUrl = 'http://localhost:3000/auth';
+  // private apiUrl = 'http://localhost:3000/auth';
+  private apiUrl = 'https://m1p13mean-kanty-nomentsoa.onrender.com/auth';
 
   constructor(private http: HttpClient) {}
 

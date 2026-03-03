@@ -17,6 +17,7 @@ export class Produits implements OnInit {
 
   selectedProduit: any = null;
   selectedBoutiqueId: string = '';
+  selectedFile: File | null = null;
 
   isNewCategorie = false;
   newCategorieName = '';
@@ -107,21 +108,34 @@ export class Produits implements OnInit {
     });
   }
 
-  createProduit() {
-
-    if (!this.selectedBoutiqueId) {
-      alert("Choisir une boutique");
-      return;
-    }
-
-    this.produitForm.boutiqueOwner = this.selectedBoutiqueId;
-
-    this.produitService.create(this.produitForm).subscribe(() => {
-      this.resetForm();
-      this.loadProduitsByBoutique();
-      this.cdr.detectChanges();
-    });
+createProduit() {
+  if (!this.selectedBoutiqueId) {
+    alert("Choisir une boutique");
+    return;
   }
+
+  // Utilisation de FormData pour envoyer texte + fichier
+  const formData = new FormData();
+  formData.append('nomproduit', this.produitForm.nomproduit);
+  formData.append('boutiqueOwner', this.selectedBoutiqueId);
+  formData.append('categorieproduit', this.produitForm.categorieproduit);
+  formData.append('prix', this.produitForm.prix);
+  formData.append('description', this.produitForm.description);
+  formData.append('quantite', this.produitForm.quantite);
+  formData.append('seuilquantite', this.produitForm.seuilquantite);
+  formData.append('promotion', this.produitForm.promotion);
+  
+  if (this.selectedFile) {
+    formData.append('image', this.selectedFile); // 'image' doit correspondre au nom dans Multer
+  }
+
+  this.produitService.create(formData).subscribe(() => {
+    this.resetForm();
+    this.selectedFile = null; // Reset le fichier
+    this.loadProduitsByBoutique();
+    this.cdr.detectChanges();
+  });
+}
 
   editProduit(p: any) {
     this.selectedProduit = p;
@@ -170,5 +184,9 @@ export class Produits implements OnInit {
       statut: 0,
       promotion: ''
     };
+  }
+
+  onFileSelected(event: any) {
+  this.selectedFile = event.target.files[0];
   }
 }

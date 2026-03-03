@@ -21,6 +21,7 @@ import { HomeClient } from './components/home-client/home-client';
 import { VisiterBoutique } from './components/visiter-boutique/visiter-boutique';
 import { PanierListe } from './components/panier-liste/panier-liste';
 import { ProduitDetail } from './components/produit-detail/produit-detail';
+import { Contact } from './components/contact/contact';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ProduitDetail } from './components/produit-detail/produit-detail';
     VisiterBoutique,
     PanierListe,
     ProduitDetail,
+    Contact,
   ],
   imports: [
     BrowserModule,

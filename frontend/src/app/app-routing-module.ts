@@ -16,6 +16,7 @@ import {GestionBoutique} from './components/gestion-boutique/gestion-boutique';
 import { VisiterBoutique } from './components/visiter-boutique/visiter-boutique';
 import { PanierListe } from './components/panier-liste/panier-liste';
 import { ProduitDetail } from './components/produit-detail/produit-detail';
+import { Contact } from './components/contact/contact';
 
 const routes: Routes = [
 
@@ -28,6 +29,7 @@ const routes: Routes = [
       {path: 'visiter-boutique/:id', component: VisiterBoutique},
       {path: 'panier-liste', component: PanierListe},
       {path: 'produit-detail/:id', component: ProduitDetail},
+      {path: 'contact', component: Contact},
     ]
   },
   { path: 'login', component: Login }, // page login accessible via /login

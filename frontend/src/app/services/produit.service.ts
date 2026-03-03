@@ -7,7 +7,8 @@ import {Observable} from 'rxjs';
 })
 export class ProduitService {
 
-  private apiUrl = 'http://localhost:3000/api/produits';
+  // private apiUrl = 'http://localhost:3000/api/produits';
+  private apiUrl = 'https://m1p13mean-kanty-nomentsoa.onrender.com/api/produits';
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +18,7 @@ export class ProduitService {
   getById(id: string) {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
-  create(data: any) {
+  create(data: FormData) { // Type changé en FormData
     return this.http.post<any>(this.apiUrl, data);
   }
   update(id: string, data: any) {

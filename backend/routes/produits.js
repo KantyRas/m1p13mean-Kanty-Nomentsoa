@@ -1,6 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const produitController = require('../controllers/ProduitController');
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'produits', // Nom du dossier dans Cloudinary
+    allowed_formats: ['jpg', 'png', 'jpeg'],
+  },
+});
+
+const upload = multer({ storage: storage });
 
 
 // Créer catégorie
@@ -13,7 +26,7 @@ router.get('/promotion', produitController.getProduitsEnPromotion);
 // Produits stock faible
 router.get('/stock-faible', produitController.getProduitsStockFaible);
 // Créer produit
-router.post('/', produitController.createProduit);
+router.post('/',upload.single('image'), produitController.createProduit);
 // Lister tous les produits
 router.get('/', produitController.getAllProduits);
 router.get('/filter', produitController.filterProduits);
